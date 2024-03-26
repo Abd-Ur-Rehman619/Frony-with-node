@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const { default: mongoose } = require("mongoose");
 const shoesRouter = require("./routers/shoes");
+const authRouter = require("./routers/auth");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 app.use("/ShoesImages", express.static(path.join(__dirname, "ShoesImages")));
 
 app.use(shoesRouter);
+app.use(authRouter);
 
 mongoose
   .connect(

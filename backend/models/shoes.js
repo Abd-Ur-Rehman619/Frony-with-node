@@ -18,7 +18,7 @@ const shoesSchema = new Schema({
     required: true,
   },
   price: {
-    type: Number, // Corrected type to Number
+    type: Number,
     required: true,
   },
   is_in_inventory: {
