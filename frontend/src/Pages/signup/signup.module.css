@@ -1,0 +1,72 @@
+.content {
+  @apply flex mt-11 mb-16;
+}
+
+.image {
+  @apply max-h-full;
+}
+.image img {
+  @apply max-h-[42rem] w-[42rem];
+}
+
+.form {
+  @apply flex flex-col ml-20  mt-auto mb-auto w-96;
+}
+
+.form h1 {
+  @apply font-bold text-xl;
+}
+
+.form > p {
+  @apply text-xs mt-3;
+}
+
+.inputs {
+  @apply flex flex-col mt-6;
+}
+
+.inputs Input::placeholder {
+  @apply text-xs;
+}
+
+.name {
+  @apply mb-5;
+}
+
+.email {
+  @apply mb-5;
+}
+
+.password {
+  @apply mb-5;
+}
+
+.primaryBtns {
+  @apply flex flex-col;
+}
+
+.createBtn Button {
+  @apply bg-[#EA4335] justify-center text-white w-full mt-5 capitalize;
+}
+
+.createBtn Button:hover {
+  @apply bg-[#aa4137];
+}
+
+.googleBtn Button {
+  @apply text-black mt-2 border border-solid border-black  w-full justify-center items-center text-xs capitalize;
+}
+.googleBtn Button:hover {
+  @apply bg-slate-200;
+}
+.googleBtn Button > img {
+  @apply mr-3 w-5 h-5;
+}
+
+.footerBtn {
+  @apply mt-5 flex justify-center items-center;
+}
+
+.footerBtn Button {
+  @apply text-black text-opacity-45 capitalize;
+}

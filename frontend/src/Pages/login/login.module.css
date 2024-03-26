@@ -1,0 +1,50 @@
+.content {
+  @apply flex mt-11 mb-16;
+}
+
+.image {
+  @apply max-h-full;
+}
+.image img {
+  @apply max-h-[42rem] w-[42rem];
+}
+
+.form {
+  @apply flex flex-col ml-20  mt-auto mb-auto w-96;
+}
+
+.form h1 {
+  @apply font-bold text-xl;
+}
+
+.form > p {
+  @apply text-xs mt-3;
+}
+
+.inputs {
+  @apply flex flex-col mt-6;
+}
+
+.inputs Input::placeholder {
+  @apply text-xs;
+}
+
+.email {
+  @apply mb-5;
+}
+
+.password {
+  @apply mb-5;
+}
+
+.primaryBtns {
+  @apply flex justify-between items-center;
+}
+
+.loginBtn Button {
+  @apply bg-[#EA4335] justify-center text-white w-24 capitalize hover:bg-[#aa4137];
+}
+
+.forgetBtn Button {
+  @apply text-[#EA4335] capitalize text-xs hover:bg-slate-200;
+}

@@ -1,0 +1,42 @@
+.product {
+  @apply flex items-center justify-between mb-5 gap-x-44;
+}
+
+.productImage {
+  @apply flex items-center gap-4;
+}
+
+.cartTotal {
+  @apply flex flex-col w-[23rem];
+}
+
+.cartTotal p {
+  @apply flex justify-between border-b-2 pb-2 pt-2;
+}
+
+.checkbox {
+  @apply flex items-center gap-2 mt-4 mb-4;
+}
+
+.checkbox > label {
+  @apply text-xs opacity-50;
+}
+
+.coupon {
+  @apply flex items-center gap-x-4 mt-4 mb-4;
+}
+
+.coupon input {
+  @apply border border-solid border-slate-300 outline-slate-400 rounded-sm p-1  border  focus:outline focus:border-2 w-64;
+}
+
+.coupon Button {
+  @apply bg-[#EA4335] text-white capitalize w-36 hover:bg-[#aa4137];
+}
+
+.orderBtn {
+  @apply mt-4 mb-4;
+}
+.orderBtn Button {
+  @apply bg-[#EA4335] text-white capitalize w-36 hover:bg-[#aa4137];
+}

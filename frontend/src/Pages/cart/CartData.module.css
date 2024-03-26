@@ -1,0 +1,18 @@
+.product {
+  @apply flex min-w-max items-center justify-between ml-6 mr-6 mt-6 border border-gray-400 p-4  shadow-slate-400 rounded-md;
+}
+
+.productImage {
+  @apply flex items-center gap-4;
+}
+
+.productImage > img {
+  @apply w-16 h-16;
+}
+
+.quantityInput {
+  @apply w-36 flex justify-center;
+}
+.quantityInput input {
+  @apply outline outline-slate-300  p-1 w-2/5 rounded-md;
+}

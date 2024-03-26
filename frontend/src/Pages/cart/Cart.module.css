@@ -1,0 +1,57 @@
+.main {
+  @apply flex flex-col w-full items-center;
+}
+
+.table {
+  @apply w-4/5;
+}
+
+.tableHeader {
+  @apply flex items-center justify-between ml-6 mr-6 mt-6 border border-gray-400 p-4  shadow-slate-400 rounded-md;
+}
+
+.tableData {
+  @apply flex flex-col;
+}
+
+.cartBtns {
+  @apply flex justify-between w-4/5 p-6;
+}
+
+.cartBtns Button {
+  @apply capitalize text-black font-bold border border-solid border-gray-950 border-opacity-30 w-36 p-2 hover:bg-[#EA4335] hover:text-white;
+}
+
+.cartFooter {
+  @apply flex w-4/5 p-6 justify-between;
+}
+
+.coupon {
+  @apply flex items-center gap-x-4 h-16;
+}
+
+.coupon Input {
+  @apply outline outline-slate-400 rounded-sm p-1  border  focus:outline focus:border-2;
+}
+
+.coupon Button {
+  @apply bg-[#EA4335] text-white capitalize w-36 hover:bg-[#aa4137];
+}
+
+.cartTotal {
+  @apply flex flex-col p-6 border border-black w-96;
+}
+
+.cartTotal h2 {
+  @apply font-bold text-lg;
+}
+.cartTotal p {
+  @apply flex justify-between border-b-2 pb-2 pt-2;
+}
+
+.checkoutBtn {
+  @apply flex justify-center mt-4;
+}
+.checkoutBtn Button {
+  @apply bg-[#EA4335] text-white capitalize hover:bg-[#aa4137];
+}

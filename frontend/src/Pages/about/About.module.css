@@ -1,0 +1,19 @@
+.main {
+  @apply flex flex-col justify-center pt-16 pb-16;
+}
+
+.outStory {
+  @apply flex justify-between gap-4;
+}
+
+.story {
+  @apply pl-16 max-w-[40rem] flex flex-col justify-center gap-4;
+}
+
+.storyImage {
+  @apply max-w-2xl;
+}
+
+.storyImage img {
+  @apply max-h-full w-[42rem];
+}
