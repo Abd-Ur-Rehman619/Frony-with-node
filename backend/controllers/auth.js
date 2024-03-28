@@ -58,7 +58,7 @@ exports.logIn = async (req, res, next) => {
         email: user.email,
         userId: user._id.toString(),
       },
-      "goingintogatherimalwayswithu",
+      "!fuRN0tW!thMEtheng0@w@yNoTManTt0cu",
       { expiresIn: "1h" }
     );
 

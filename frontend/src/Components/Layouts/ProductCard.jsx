@@ -24,7 +24,7 @@ export default function ProductCard({
 
   return (
     <Link
-      to={`Products/${slug}`}
+      to={`${slug}`}
       className="flex flex-col  mb-20 w-[270px] h-[350px] relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
