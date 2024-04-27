@@ -6,7 +6,7 @@ import SiteInformationLayout from "./Layouts/SiteInformationLayout";
 
 export default function SiteInformation() {
   return (
-    <div className="grid grid-cols-4 justify-between gap-10 d">
+    <div className="grid grid-cols-4 justify-between gap-10">
       <SiteInformationLayout
         img={SellerSite}
         title={"10.5k"}

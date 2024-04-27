@@ -4,6 +4,7 @@ const { default: mongoose } = require("mongoose");
 const shoesRouter = require("./routers/shoes");
 const authRouter = require("./routers/auth");
 const cartRouter = require("./routers/cart");
+const ordersRouter = require("./routers/orders");
 const { isAuth } = require("./middleware/is-auth");
 const { isUser } = require("./middleware/is-user");
 
@@ -24,6 +25,7 @@ app.use("/ShoesImages", express.static(path.join(__dirname, "ShoesImages")));
 app.use(shoesRouter);
 app.use(authRouter);
 app.use(isAuth, isUser, cartRouter);
+app.use(isAuth, isUser, ordersRouter);
 
 mongoose
   .connect(

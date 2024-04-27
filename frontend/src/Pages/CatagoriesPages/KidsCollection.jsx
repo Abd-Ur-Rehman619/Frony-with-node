@@ -1,7 +1,20 @@
 import ShowProducts from "../../Components/Layouts/ShowProducts";
-import { useProductFilter } from "../../Components/Layouts/useProductFilter";
+import { useEffect, useState } from "react";
 export default function KidsCollection() {
-  const kidsCollection = useProductFilter("KIDS");
+  const [kidsCollection, KidsCollection] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/products/kids");
+
+      if (!response.ok) {
+        throw new Error("Could not fetch cart data!");
+      }
+
+      const data = await response.json();
+      KidsCollection(data);
+    }
+    fetchData();
+  }, []);
   return (
     <>
       {kidsCollection && (

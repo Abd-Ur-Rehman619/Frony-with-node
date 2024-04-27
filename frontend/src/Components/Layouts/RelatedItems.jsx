@@ -12,6 +12,7 @@ export default function RelatedItems({ product }) {
     );
     setRelateditems(prouducts);
   }, []);
+  console.log(relatedItems);
 
   return (
     <>

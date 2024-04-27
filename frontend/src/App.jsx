@@ -7,9 +7,9 @@ import PageNotFound from "./Pages/PageNotFound";
 import Contact from "./Pages/Contact";
 import Signup from "./Pages/signup/Signup";
 import About from "./Pages/about/About.jsx";
-import Cart from "./Pages/cart/Cart.jsx";
+// import Cart from "./Pages/cart/Cart.jsx";
 import Wishlist from "./Pages/Wishlist";
-import Login from "./Pages/login/Login.jsx";
+// import Login from "./Pages/login/Login.jsx";
 
 import Products from "./Pages/Products";
 import WomenCollection from "./Pages/CatagoriesPages/WomenCollection";
@@ -22,7 +22,7 @@ import Casual from "./Pages/CatagoriesPages/Casual";
 import Football from "./Pages/CatagoriesPages/Football";
 import Formal from "./Pages/CatagoriesPages/Formal";
 import Running from "./Pages/CatagoriesPages/Running";
-import Checkout from "./Pages/checkout/Checkout.jsx";
+// import Checkout from "./Pages/checkout/Checkout.jsx";
 import Product from "./Pages/Product.jsx";
 
 const router = createBrowserRouter([
@@ -46,28 +46,28 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <Signup />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
+      // {
+      //   path: "/login",
+      //   element: <Login />,
+      // },
       {
         path: "/about",
         element: <About />,
       },
-      {
-        path: "/cart",
+      // {
+      //   path: "/cart",
 
-        children: [
-          {
-            index: true,
-            element: <Cart />,
-          },
-          {
-            path: "checkout",
-            element: <Checkout />,
-          },
-        ],
-      },
+      //   children: [
+      //     {
+      //       index: true,
+      //       element: <Cart />,
+      //     },
+      //     {
+      //       path: "checkout",
+      //       element: <Checkout />,
+      //     },
+      //   ],
+      // },
       {
         path: "/wishlist",
         element: <Wishlist />,
@@ -128,7 +128,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 function App() {
   return <RouterProvider router={router} />;
 }

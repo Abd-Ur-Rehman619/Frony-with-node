@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
 import ShowProducts from "../../Components/Layouts/ShowProducts";
-import { useProductFilterByCategory } from "../../Components/Layouts/useProductsFilterByCategory";
 
 export default function Football() {
-  const footballCollection = useProductFilterByCategory("FOOTBALL");
+  const [footballCollection, setFootballCollection] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/products/football");
+
+      if (!response.ok) {
+        throw new Error("Could not fetch cart data!");
+      }
+
+      const data = await response.json();
+      setFootballCollection(data);
+    }
+    fetchData();
+  }, []);
   return (
     <>
       {footballCollection && (

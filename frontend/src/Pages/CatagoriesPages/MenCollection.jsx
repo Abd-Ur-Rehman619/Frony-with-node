@@ -1,8 +1,21 @@
 import ShowProducts from "../../Components/Layouts/ShowProducts";
-import { useProductFilter } from "../../Components/Layouts/useProductFilter";
+import { useEffect, useState } from "react";
 
 export default function MenCollection() {
-  const menCollection = useProductFilter("MEN");
+  const [menCollection, setMenCollection] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/products/men");
+
+      if (!response.ok) {
+        throw new Error("Could not fetch cart data!");
+      }
+
+      const data = await response.json();
+      setMenCollection(data);
+    }
+    fetchData();
+  }, []);
 
   return (
     <>
