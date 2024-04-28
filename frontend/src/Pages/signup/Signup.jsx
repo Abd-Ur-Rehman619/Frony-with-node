@@ -3,31 +3,24 @@ import signupImg from "../../assets/authPic.png";
 import { Button, IconButton, Input, InputAdornment } from "@mui/material";
 import googleIcon from "../../assets/Icon-Google.png";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Signup() {
-  // const navigate = useNavigate();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  // const [nameError, setNameError] = useState("");
-  // const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  // const users = JSON.parse(localStorage.getItem("users")) || [];
-
   const handleNameChange = (e) => {
     setName(e.target.value);
-    // setNameError("");
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    // setEmailError("");
   };
 
   const handlePasswordChange = (e) => {
@@ -47,73 +40,21 @@ export default function Signup() {
       },
     });
 
-    // if (!response.ok) {
-    //   throw new Error("Could not fetch cart data!");
-    // }
-
     const data = await response.json();
-    console.log(data);
     if (data.errors) {
-      setMessage(data.errors);
+      toast.error(`${data.errors}`);
     } else if (data.message) {
-      setMessage(data.message);
+      toast.success(`${data.message}`);
     }
   };
-
-  // const handleMessage = () => {
-  //   if (data.error) {
-  //     setMessage(data.error);
-  //   } else if (data.message) {
-  //     setMessage(data.message);
-  //   }
-  // };
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  // const handleSignup = () => {
-  //   if (!name) {
-  //     setNameError("Name cannot be empty");
-  //   } else {
-  //     setNameError("");
-  //   }
-
-  //   if (!email || !/\S+@\S+\.\S+/.test(email)) {
-  //     setEmailError("Invalid email, email must have @");
-  //     return;
-  //   }
-
-  //   if (
-  //     !password ||
-  //     !/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(
-  //       password
-  //     )
-  //   ) {
-  //     setPasswordError(
-  //       "Password must have at least one uppercase, lowercase letter, one digit, one special character, and minimum 8 characters"
-  //     );
-  //     return;
-  //   }
-
-  // if (!name || !email || !password) {
-  //   return;
-  // }
-
-  // const existingUser = users.find((user) => user.email === email);
-  // if (existingUser) {
-  //   setEmailError("This email is already Exists");
-  //   return;
-  // }
-
-  // const newUser = { name, email, password };
-  // const updatedUsers = [...users, newUser];
-  // localStorage.setItem("users", JSON.stringify(updatedUsers));
-
-  // navigate("/login");
-
   return (
     <>
+      <ToastContainer position="top-center" autoClose={3000} />
       <div className={styles.content}>
         <div className={styles.image}>
           <img src={signupImg} alt="signup Img" />
@@ -131,16 +72,6 @@ export default function Signup() {
               onChange={handleNameChange}
               required
             />
-            {/* {nameError && (
-              <p className="text-xs p-0 relative -top-3 text-red-600">
-                {nameError}
-              </p>
-            )} */}
-            {message && (
-              <p className="text-xs p-0 relative -top-3 text-red-600">
-                {message}
-              </p>
-            )}
 
             <Input
               type="email"
@@ -150,11 +81,6 @@ export default function Signup() {
               onChange={handleEmailChange}
               required
             />
-            {/* {emailError && (
-              <p className="text-xs p-0 relative -top-3 text-red-600">
-                {emailError}
-              </p>
-            )} */}
 
             <Input
               type={showPassword ? "text" : "password"}

@@ -4,14 +4,24 @@ import IconButton from "@mui/material/IconButton";
 import Icon from "../../assets/icon.png";
 import Cart from "../../assets/Cart.png";
 import Wishlist from "../../assets/Wishlist.png";
-// import user from "../../assets/user.png";
+import user from "../../assets/user.png";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLog } from "../../store/cartSlice";
 
 import styles from "../StylingFiles/header.module.css";
 import { Clear, Menu } from "@mui/icons-material";
 import { useState } from "react";
 
 export default function Header() {
+  const Log = useSelector((state) => state.log);
+  const dispatch = useDispatch();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  function logoutHandler() {
+    localStorage.removeItem("token");
+    dispatch(changeLog());
+  }
 
   const content = (
     <div className="flex flex-col justify-between absolute top-16 left-0 right-0 w-full z-20 h-96 bg-slate-500 translate-x-1 lg:hidden">
@@ -27,13 +37,13 @@ export default function Header() {
             <img src={Wishlist} alt="Custom Icon" />
           </IconButton>
         </Link>
-        {/* {Log && (
+        {Log && (
           <Link to="/wishlist">
             <IconButton>
               <img src={user} alt="Custom Icon" />
             </IconButton>
           </Link>
-        )} */}
+        )}
       </div>
 
       <nav className="flex flex-col justify-center items-center mb-6">
@@ -46,20 +56,20 @@ export default function Header() {
         <NavLink to="/about" className={styles.mobileNav}>
           About
         </NavLink>
-        {/* {Log === false ? ( */}
-        <>
-          <NavLink to="/signup" className={styles.mobileNav}>
-            SignUp
-          </NavLink>
-          <NavLink to="/login" className={styles.mobileNav}>
-            Login
-          </NavLink>
-        </>
-        {/* ) : (
+        {Log === false ? (
+          <>
+            <NavLink to="/signup" className={styles.mobileNav}>
+              SignUp
+            </NavLink>
+            <NavLink to="/login" className={styles.mobileNav}>
+              Login
+            </NavLink>
+          </>
+        ) : (
           <button onClick={logoutHandler} className={styles.mobileNav}>
             LogOut
           </button>
-        )} */}
+        )}
       </nav>
     </div>
   );
@@ -97,30 +107,30 @@ export default function Header() {
             >
               About
             </NavLink>
-            {/* {Log === false ? ( */}
-            <>
-              <NavLink
-                to="/signup"
-                className={({ isActive }) =>
-                  isActive ? styles.activeLink : styles.navLinks
-                }
-              >
-                SignUp
-              </NavLink>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  isActive ? styles.activeLink : styles.navLinks
-                }
-              >
-                Login
-              </NavLink>
-            </>
-            {/* ) : (
+            {Log === false ? (
+              <>
+                <NavLink
+                  to="/signup"
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : styles.navLinks
+                  }
+                >
+                  SignUp
+                </NavLink>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : styles.navLinks
+                  }
+                >
+                  Login
+                </NavLink>
+              </>
+            ) : (
               <button onClick={logoutHandler} className={styles.navLinks}>
                 LogOut
               </button>
-            )} */}
+            )}
           </nav>
 
           <div className={styles.textFieldDiv}>
@@ -151,13 +161,13 @@ export default function Header() {
                   <img src={Wishlist} alt="Custom Icon" />
                 </IconButton>
               </Link>
-              {/* {Log && (
+              {Log && (
                 <Link to="/wishlist" className={styles.cartWishLinks}>
                   <IconButton>
                     <img src={user} alt="Custom Icon" />
                   </IconButton>
                 </Link>
-              )} */}
+              )}
             </div>
           </div>
 

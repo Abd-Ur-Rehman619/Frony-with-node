@@ -1,120 +1,125 @@
-// import styles from "./login.module.css";
-// import signupImg from "../../assets/authPic.png";
-// import { Button, IconButton, Input, InputAdornment } from "@mui/material";
-// import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { Visibility, VisibilityOff } from "@mui/icons-material";
-// import { updateLog } from "../../store/cartSlice";
-// import generateToken from "../../../helpers/generateToken";
-// // import { useDispatch } from "react-redux";
+import styles from "./login.module.css";
+import signupImg from "../../assets/authPic.png";
+import { Button, IconButton, Input, InputAdornment } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { updateLog } from "../../store/cartSlice";
 
-// export default function Login() {
-//   const navigate = useNavigate();
+export default function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [error, setError] = useState("");
-//   const [showPassword, setShowPassword] = useState(false);
-//   // const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(updateLog());
+    }
+  }, []);
 
-//   // useEffect(() => {
-//   //   const token = localStorage.getItem("token");
-//   //   if (token) {
-//   //     dispatch(updateLog());
-//   //   }
-//   // }, []);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setError("");
+  };
 
-//   const storedUser = JSON.parse(localStorage.getItem("users")) || [];
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setError("");
+  };
 
-//   const handleEmailChange = (e) => {
-//     setEmail(e.target.value);
-//     setError("");
-//   };
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
-//   const handlePasswordChange = (e) => {
-//     setPassword(e.target.value);
-//     setError("");
-//   };
+  const handleLogin = async () => {
+    const response = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-//   const handleTogglePasswordVisibility = () => {
-//     setShowPassword((prevShowPassword) => !prevShowPassword);
-//   };
+    const data = await response.json();
+    if (data.userId) {
+      localStorage.setItem("token", data.token);
+      navigate("/");
+    } else {
+      toast.error(`${data}`);
+    }
+  };
 
-//   const handleLogin = () => {
-//     const foundUser = storedUser.find(
-//       (user) => user.email === email && user.password === password
-//     );
+  return (
+    <>
+      <ToastContainer position="top-center" autoClose={3000} />
+      <div className={styles.content}>
+        <div className={styles.image}>
+          <img src={signupImg} alt="signup Img" />
+        </div>
 
-//   //   if (foundUser) {
-//   //     const token = generateToken();
-//   //     localStorage.setItem("token", token);
-//   //     dispatch(updateLog());
-//   //     navigate("/");
-//   //   } else {
-//   //     setError("Incorrect email or password");
-//   //   }
-//   // };
+        <form className={styles.form}>
+          <h1>Log in to Exclusive</h1>
+          <p>Enter your details below</p>
+          <div className={styles.inputs}>
+            <Input
+              type="email"
+              className={styles.email}
+              placeholder="Email"
+              value={email}
+              onChange={handleEmailChange}
+            />
+            {error && (
+              <p className="text-xs p-0 relative -top-3 text-red-600">
+                {error}
+              </p>
+            )}
 
-//   return (
-//     <>
-//       <div className={styles.content}>
-//         <div className={styles.image}>
-//           <img src={signupImg} alt="signup Img" />
-//         </div>
+            <Input
+              type={showPassword ? "text" : "password"}
+              className={styles.password}
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleTogglePasswordVisibility}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            {error && (
+              <p className="text-xs p-0 relative -top-3 text-red-600">
+                {error}
+              </p>
+            )}
+          </div>
 
-//         <form className={styles.form}>
-//           <h1>Log in to Exclusive</h1>
-//           <p>Enter your details below</p>
-//           <div className={styles.inputs}>
-//             <Input
-//               type="email"
-//               className={styles.email}
-//               placeholder="Email"
-//               value={email}
-//               onChange={handleEmailChange}
-//             />
-//             {error && (
-//               <p className="text-xs p-0 relative -top-3 text-red-600">
-//                 {error}
-//               </p>
-//             )}
+          <div className={styles.primaryBtns}>
+            <div className={styles.loginBtn}>
+              <Button onClick={handleLogin}>Log in</Button>
+            </div>
 
-//             <Input
-//               type={showPassword ? "text" : "password"}
-//               className={styles.password}
-//               placeholder="Password"
-//               value={password}
-//               onChange={handlePasswordChange}
-//               endAdornment={
-//                 <InputAdornment position="end">
-//                   <IconButton
-//                     aria-label="toggle password visibility"
-//                     onClick={handleTogglePasswordVisibility}
-//                     edge="end"
-//                   >
-//                     {showPassword ? <VisibilityOff /> : <Visibility />}
-//                   </IconButton>
-//                 </InputAdornment>
-//               }
-//             />
-//             {error && (
-//               <p className="text-xs p-0 relative -top-3 text-red-600">
-//                 {error}
-//               </p>
-//             )}
-//           </div>
-
-//           <div className={styles.primaryBtns}>
-//             <div className={styles.loginBtn}>
-//               <Button onClick={handleLogin}>Log in</Button>
-//             </div>
-
-//             <div className={styles.forgetBtn}>
-//               <Button>Forget Password?</Button>
-//             </div>
-//           </div>
-//         </form>
-//       </div>
-//     </>
-//   );
-// }
+            <div className={styles.forgetBtn}>
+              <Button>Forget Password?</Button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+}

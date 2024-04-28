@@ -9,7 +9,7 @@ import Signup from "./Pages/signup/Signup";
 import About from "./Pages/about/About.jsx";
 // import Cart from "./Pages/cart/Cart.jsx";
 import Wishlist from "./Pages/Wishlist";
-// import Login from "./Pages/login/Login.jsx";
+import Login from "./Pages/login/Login.jsx";
 
 import Products from "./Pages/Products";
 import WomenCollection from "./Pages/CatagoriesPages/WomenCollection";
@@ -46,10 +46,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <Signup />,
       },
-      // {
-      //   path: "/login",
-      //   element: <Login />,
-      // },
+      {
+        path: "/login",
+        element: <Login />,
+      },
       {
         path: "/about",
         element: <About />,

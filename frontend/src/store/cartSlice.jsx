@@ -12,5 +12,20 @@ export const cartSlice = createSlice({
   },
 });
 
+const logSlice = createSlice({
+  name: "LogState",
+  initialState: false,
+  reducers: {
+    updateLog: (state) => {
+      return true;
+    },
+    changeLog: (state) => {
+      return false;
+    },
+  },
+});
 export const { setCartData } = cartSlice.actions;
+export const { updateLog, changeLog } = logSlice.actions;
+
 export const cartReducer = cartSlice.reducer;
+export const logReducer = logSlice.reducer;

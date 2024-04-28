@@ -26,10 +26,9 @@ app.use(shoesRouter);
 app.use(authRouter);
 app.use(isAuth, isUser, cartRouter);
 app.use(isAuth, isUser, ordersRouter);
-
 mongoose
   .connect(
-    "mongodb+srv://germany61907:TtAuho6Q59piptCu@forny.oz78vsv.mongodb.net/Forny"
+    "mongodb+srv://germany61907:On4ONkcPZFf3dAx2@forny.oz78vsv.mongodb.net/Forny"
   )
   .catch((err) => {
     console.log("Connection Problem");
