@@ -2,6 +2,8 @@ import ShowProducts from "../../Components/Layouts/ShowProducts";
 import { useEffect, useState } from "react";
 export default function WomenCollection() {
   const [womenCollection, setWomenCollection] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/products/women");
@@ -11,6 +13,7 @@ export default function WomenCollection() {
       }
 
       const data = await response.json();
+      setisLoading(true);
       setWomenCollection(data);
     }
     fetchData();
@@ -22,6 +25,7 @@ export default function WomenCollection() {
           titleLabel={"Women's Collection"}
           descriptionLabel={"View All Women's Shoes"}
           products={womenCollection}
+          isLoading={isLoading}
         />
       )}
     </>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function MenCollection() {
   const [menCollection, setMenCollection] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/products/men");
@@ -12,6 +13,7 @@ export default function MenCollection() {
       }
 
       const data = await response.json();
+      setisLoading(true);
       setMenCollection(data);
     }
     fetchData();
@@ -24,6 +26,7 @@ export default function MenCollection() {
           titleLabel={"Men's Collection"}
           descriptionLabel={"View All Men's Shoes"}
           products={menCollection}
+          isLoading={isLoading}
         />
       )}
     </>

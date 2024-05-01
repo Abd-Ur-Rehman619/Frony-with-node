@@ -5,6 +5,16 @@ exports.getShoes = async (req, res, next) => {
   const shoes = await Shoes.find();
   res.status(200).json(shoes);
 };
+exports.getShoe = async (req, res, next) => {
+  const shoeId = req.params.shoeId;
+  Shoes.findById(shoeId)
+    .then((shoe) => {
+      res.status(200).json(shoe);
+    })
+    .catch((err) => {
+      console.log("Was not Able to fetch product");
+    });
+};
 exports.getWomenShoes = async (req, res, next) => {
   const shoes = await filterShoes("WOMEN");
   res.status(200).json(shoes);

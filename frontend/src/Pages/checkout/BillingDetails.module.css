@@ -3,7 +3,7 @@
 }
 
 .productImage {
-  @apply flex items-center gap-4;
+  @apply flex items-center gap-4 w-10 h-10;
 }
 
 .cartTotal {

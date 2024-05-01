@@ -59,7 +59,7 @@ exports.logIn = async (req, res, next) => {
         userId: user._id.toString(),
       },
       "!fuRN0tW!thMEtheng0@w@yNoTManTt0cu",
-      { expiresIn: "1h" }
+      { expiresIn: "2h" }
     );
 
     res.status(200).json({ token: token, userId: user._id.toString() });

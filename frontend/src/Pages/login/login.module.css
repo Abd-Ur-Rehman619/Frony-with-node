@@ -1,16 +1,16 @@
 .content {
-  @apply flex mt-11 mb-16;
+  @apply flex mt-11 mb-16 max-lg:flex max-lg:justify-center;
 }
 
 .image {
-  @apply max-h-full;
+  @apply max-h-full max-lg:hidden;
 }
 .image img {
   @apply max-h-[42rem] w-[42rem];
 }
 
 .form {
-  @apply flex flex-col ml-20  mt-auto mb-auto w-96;
+  @apply flex flex-col ml-20  mt-auto mb-auto w-96 max-sm:m-5;
 }
 
 .form h1 {

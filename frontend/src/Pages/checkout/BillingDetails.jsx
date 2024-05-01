@@ -1,45 +1,63 @@
 import { Button } from "@mui/material";
-import lcdMonitor from "../../assets/LCD_Monitor.png";
 import styles from "./BillingDetails.module.css";
-
-const products = [
-  {
-    image: lcdMonitor,
-    name: "LCD Monitor",
-    price: 123,
-  },
-  {
-    image: lcdMonitor,
-    name: "LCD Monitor",
-    price: 123,
-  },
-];
+import { useEffect, useState } from "react";
 
 export default function BillingDetails() {
+  const [products, setproducts] = useState([]);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/cart", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setproducts(data);
+    }
+    fetchData();
+  }, [token]);
+  async function handleOrder() {
+    const response = await fetch("http://localhost:3000/orders", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  }
+  console.log(products);
+  const total = products.reduce(
+    (accumulator, item) => accumulator + item.quantity * item.productId.price,
+    0
+  );
   return (
     <>
       <div>
         {products.map((product) => (
-          <tr key={product.name}>
+          <tr key={product.productId.name}>
             <td className={styles.product}>
               <span className={styles.productImage}>
-                <img src={product.image} alt="img" className={styles.image} />
+                <img
+                  src={`../${product.productId.imageURL}`}
+                  alt="img"
+                  className={styles.image}
+                />
                 {product.name}
               </span>
-              <span>${product.price}</span>
+              <span>${product.productId.price}</span>
+
+              <span>${product.quantity * product.productId.price}</span>
             </td>
           </tr>
         ))}
 
         <div className={styles.cartTotal}>
           <p>
-            Subtotal:<span>$123</span>
-          </p>
-          <p>
             Shipping:<span>Free</span>
           </p>
           <p className="border-none">
-            Total:<span>$123</span>
+            Total:<span>{total}</span>
           </p>
         </div>
 
@@ -55,7 +73,7 @@ export default function BillingDetails() {
       </div>
 
       <div className={styles.orderBtn}>
-        <Button>Place Order</Button>
+        <Button onClick={handleOrder}>Place Order</Button>
       </div>
     </>
   );

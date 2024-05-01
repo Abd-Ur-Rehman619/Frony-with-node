@@ -45,6 +45,9 @@ export default function Signup() {
       toast.error(`${data.errors}`);
     } else if (data.message) {
       toast.success(`${data.message}`);
+      setName("");
+      setEmail("");
+      setPassword("");
     }
   };
 

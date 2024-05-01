@@ -3,19 +3,16 @@ import { TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Icon from "../../assets/icon.png";
 import Cart from "../../assets/Cart.png";
-import Wishlist from "../../assets/Wishlist.png";
-import user from "../../assets/user.png";
-import { useDispatch, useSelector } from "react-redux";
-import { changeLog } from "../../store/cartSlice";
 
 import styles from "../StylingFiles/header.module.css";
 import { Clear, Menu } from "@mui/icons-material";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeLog } from "../../store/cartSlice";
 
 export default function Header() {
   const Log = useSelector((state) => state.log);
   const dispatch = useDispatch();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function logoutHandler() {
@@ -27,20 +24,10 @@ export default function Header() {
     <div className="flex flex-col justify-between absolute top-16 left-0 right-0 w-full z-20 h-96 bg-slate-500 translate-x-1 lg:hidden">
       <div className="flex justify-around items-center p-3">
         {" "}
-        <Link to="/cart">
-          <IconButton>
-            <img src={Cart} alt="Custom Icon" />
-          </IconButton>
-        </Link>
-        <Link to="/wishlist">
-          <IconButton>
-            <img src={Wishlist} alt="Custom Icon" />
-          </IconButton>
-        </Link>
         {Log && (
-          <Link to="/wishlist">
+          <Link to="/cart">
             <IconButton>
-              <img src={user} alt="Custom Icon" />
+              <img src={Cart} alt="Custom Icon" />
             </IconButton>
           </Link>
         )}
@@ -56,7 +43,7 @@ export default function Header() {
         <NavLink to="/about" className={styles.mobileNav}>
           About
         </NavLink>
-        {Log === false ? (
+        {!Log ? (
           <>
             <NavLink to="/signup" className={styles.mobileNav}>
               SignUp
@@ -107,7 +94,7 @@ export default function Header() {
             >
               About
             </NavLink>
-            {Log === false ? (
+            {!Log ? (
               <>
                 <NavLink
                   to="/signup"
@@ -151,20 +138,10 @@ export default function Header() {
             </div>
 
             <div className="hidden lg:items-center lg:flex ">
-              <Link to="/cart" className={styles.cartWishLinks}>
-                <IconButton>
-                  <img src={Cart} alt="Custom Icon" />
-                </IconButton>
-              </Link>
-              <Link to="/wishlist" className={styles.cartWishLinks}>
-                <IconButton>
-                  <img src={Wishlist} alt="Custom Icon" />
-                </IconButton>
-              </Link>
               {Log && (
-                <Link to="/wishlist" className={styles.cartWishLinks}>
+                <Link to="/cart" className={styles.cartWishLinks}>
                   <IconButton>
-                    <img src={user} alt="Custom Icon" />
+                    <img src={Cart} alt="Custom Icon" />
                   </IconButton>
                 </Link>
               )}

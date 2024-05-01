@@ -1,7 +1,7 @@
 import styles from "./login.module.css";
 import signupImg from "../../assets/authPic.png";
 import { Button, IconButton, Input, InputAdornment } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,12 +17,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      dispatch(updateLog());
-    }
-  }, []);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -53,6 +47,7 @@ export default function Login() {
     const data = await response.json();
     if (data.userId) {
       localStorage.setItem("token", data.token);
+      dispatch(updateLog());
       navigate("/");
     } else {
       toast.error(`${data}`);

@@ -20,6 +20,17 @@ exports.postCart = (req, res, next) => {
       res.status(200).json("Product added succesfully");
     });
 };
+exports.postRemoveItemCart = (req, res, next) => {
+  const { productId } = req.body;
+  shoes
+    .findById(productId)
+    .then((product) => {
+      return req.user.removeItemFromCart(product);
+    })
+    .then((result) => {
+      res.status(200).json("Product Removed succesfully");
+    });
+};
 exports.postCartDeleteProduct = (req, res, next) => {
   const { productId } = req.body;
   req.user

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import controller from "../../assets/controller.png";
 import heart from "../../assets/heart.png";
 import view from "../../assets/view.png";
 import yellow from "../../assets/heart - Copy.png";
@@ -16,7 +15,8 @@ export default function ProductCard({
   image,
 }) {
   const [isLiked, setLiked] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
+
   const discountPrice = price + 20;
 
   const handleLikeClick = () => {
@@ -25,13 +25,13 @@ export default function ProductCard({
 
   return (
     <Link
-      to={`Products/${slug}`}
+      to={`/Products/${slug}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative flex justify-center bg-[#F5F5F5] p-12 mb-2">
         <img className="h-36" src={image} alt="" />
-        {/* {isHovered && (
+        {/* {Log && isHovered && (
           <div className="absolute flex justify-center bottom-0 bg-black text-white ">
             <button className="w-[270px] h-10">Add to Cart</button>
           </div>
