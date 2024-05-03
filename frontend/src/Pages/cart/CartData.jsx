@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import styles from "./CartData.module.css";
 
 import { Delete } from "@mui/icons-material";
+import { setCartData } from "../../store/cartSlice";
 
-export default function CartData({ cartData, token }) {
+export default function CartData({ cartData, token, setCartData }) {
   const [updatedCartData, setUpdatedCartData] = useState([]);
-  const [cartItems, setCartItems] = useState(cartData);
+  // const [cartItems, setCartItems] = useState(cartData);
 
   async function handleIncrement(id) {
     const response = await fetch("http://localhost:3000/cart", {
@@ -48,7 +49,6 @@ export default function CartData({ cartData, token }) {
       setUpdatedCartData(updatedData);
     }
   }
-  console.log(updatedCartData);
   async function handleDelete(id) {
     const response = await fetch("http://localhost:3000/delete-cart", {
       method: "POST",
@@ -62,15 +62,14 @@ export default function CartData({ cartData, token }) {
       const updatedCartData = cartData.filter(
         (item) => item.productId._id !== id
       );
-      setCartItems(updatedCartData);
+      setCartData(updatedCartData);
     } else {
       console.error("Failed to delete item from cart");
     }
   }
-
   return (
     <>
-      {cartItems.map((product) => (
+      {cartData.map((product) => (
         <tr key={product.productId.name}>
           <td className={styles.product}>
             <span className={styles.productImage}>

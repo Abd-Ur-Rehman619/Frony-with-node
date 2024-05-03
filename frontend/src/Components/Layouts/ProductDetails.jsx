@@ -3,6 +3,7 @@ import yellow from "../../assets/heart - Copy.png";
 import delivery from "../../assets/icon-delivery.png";
 import returnIcon from "../../assets/icon-return.png";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ProductDetails({ product }) {
   const [favorite, setFavorite] = useState(false);
@@ -20,16 +21,15 @@ export default function ProductDetails({ product }) {
           Authorization: `Bearer ${token}`,
         },
       });
-      setShowMessage(true);
-      setTimeout(() => setShowMessage(false), 3000);
+      toast.success("Your item has been added to the cart.");
     } else {
-      setTimeout(() => setShowMessage(true), 0);
+      toast.error("Log In to add items to the cart");
     }
   };
 
   function buyHandler() {
     if (!token) {
-      alert("Log In to buy items");
+      toast.error("Log In to add items to the cart");
     }
   }
 
@@ -39,16 +39,7 @@ export default function ProductDetails({ product }) {
 
   return (
     <>
-      {showMessage && (
-        <div className="absolute top-0 left-0 right-0 bg-gray-800 text-white text-center py-2">
-          {token ? (
-            <p>Your item has been added to the cart.</p>
-          ) : (
-            <p>Log In to add items to the cart</p>
-          )}
-        </div>
-      )}
-
+      <ToastContainer position="top-center" autoClose={3000} />
       <img
         src={`../${product.imageURL}`}
         alt="productImage"

@@ -1,8 +1,24 @@
 import styles from "./Checkout.module.css";
-
 import BillingDetails from "./BillingDetails";
+import { useState } from "react";
 
 export default function Checkout() {
+  const [address, setAddress] = useState("");
+  const [town, setTown] = useState("");
+  const [phone, setPhone] = useState("");
+
+  function handleAddressChange(event) {
+    setAddress(event.target.value);
+  }
+
+  function handleTownChange(event) {
+    setTown(event.target.value);
+  }
+
+  function handlePhoneChange(event) {
+    setPhone(event.target.value);
+  }
+
   return (
     <>
       <main className={styles.main}>
@@ -10,28 +26,34 @@ export default function Checkout() {
           <h1>Billing Details</h1>
           <div className={styles.billingForm}>
             <form className={styles.form}>
-              <label>First Name*</label>
-              <input type="text" required />
-              <label>Company Name*</label>
-              <input type="text" required />
               <label>Street Address*</label>
-              <input type="text" required />
-              <label>Apartment, floor, etc.(optional)</label>
-              <input type="text" />
+              <input
+                type="text"
+                name="address"
+                value={address}
+                onChange={handleAddressChange}
+                required
+              />
               <label>Town City*</label>
-              <input type="text" required />
+              <input
+                type="text"
+                name="town"
+                value={town}
+                onChange={handleTownChange}
+                required
+              />
               <label>Phone Number*</label>
-              <input type="text" required />
-              <span className={styles.checkbox}>
-                <input type="checkbox" />
-                <label>
-                  Save this information for faster check-out next time
-                </label>
-              </span>
+              <input
+                type="text"
+                name="phone"
+                value={phone}
+                onChange={handlePhoneChange}
+                required
+              />
             </form>
 
             <div className={styles.billingDetail}>
-              <BillingDetails />
+              <BillingDetails detail={{ address, town, phone }} />
             </div>
           </div>
         </div>

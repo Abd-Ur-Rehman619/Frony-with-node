@@ -3,6 +3,8 @@ import ShowProducts from "../../Components/Layouts/ShowProducts";
 
 export default function Football() {
   const [footballCollection, setFootballCollection] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/products/football");
@@ -12,6 +14,7 @@ export default function Football() {
       }
 
       const data = await response.json();
+      setisLoading(true);
       setFootballCollection(data);
     }
     fetchData();
@@ -23,6 +26,7 @@ export default function Football() {
           titleLabel={"Football Collection"}
           descriptionLabel={"View All Football Shoes"}
           products={footballCollection}
+          isLoading={isLoading}
         />
       )}
     </>

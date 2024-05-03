@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import styles from "./BillingDetails.module.css";
 import { useEffect, useState } from "react";
 
-export default function BillingDetails() {
+export default function BillingDetails({ detail }) {
   const [products, setproducts] = useState([]);
   const token = localStorage.getItem("token");
   useEffect(() => {
@@ -19,7 +19,14 @@ export default function BillingDetails() {
   }, [token]);
   async function handleOrder() {
     const response = await fetch("http://localhost:3000/orders", {
+      method: "POST",
+      body: JSON.stringify({
+        address: detail.address,
+        town: detail.town,
+        phone: detail.phone,
+      }),
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });

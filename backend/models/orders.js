@@ -19,6 +19,18 @@ const orderSchema = new Schema({
       required: true,
       ref: "users",
     },
+    address: {
+      type: String,
+      required: true,
+    },
+    town: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: Number,
+      required: true,
+    },
   },
 });
 

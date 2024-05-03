@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 
 export default function Loafers() {
   const [LoafersCollection, setLoafersCollection] = useState([]);
+
+  const [isLoading, setisLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/products/loafers");
@@ -12,6 +15,7 @@ export default function Loafers() {
       }
 
       const data = await response.json();
+      setisLoading(true);
       setLoafersCollection(data);
     }
     fetchData();
@@ -23,6 +27,7 @@ export default function Loafers() {
           titleLabel={"Loafers Collection"}
           descriptionLabel={"View All Loafers Shoes"}
           products={LoafersCollection}
+          isLoading={isLoading}
         />
       )}
     </>

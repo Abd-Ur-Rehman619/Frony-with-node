@@ -2,6 +2,9 @@ import ShowProducts from "../../Components/Layouts/ShowProducts";
 import { useEffect, useState } from "react";
 export default function KidsCollection() {
   const [kidsCollection, KidsCollection] = useState([]);
+
+  const [isLoading, setisLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/products/kids");
@@ -11,6 +14,7 @@ export default function KidsCollection() {
       }
 
       const data = await response.json();
+      setisLoading(true);
       KidsCollection(data);
     }
     fetchData();
@@ -22,6 +26,7 @@ export default function KidsCollection() {
           titleLabel={"Kids's Collection"}
           descriptionLabel={"View All Kids's Shoes"}
           products={kidsCollection}
+          isLoading={isLoading}
         />
       )}
     </>

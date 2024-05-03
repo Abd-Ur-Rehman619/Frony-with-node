@@ -4,7 +4,7 @@ import shoesImg from "../json/Carousel_Imgs.json";
 
 export const ImageCarousel = () => {
   return (
-    <Carousel className="w-[65rem] bg-black  pt-20 mt-5 ">
+    <Carousel className="w-[50rem] pt-10">
       {shoesImg.map((item) => (
         <Paper className="relative flex justify-end" key={item.id}>
           <img
@@ -19,11 +19,6 @@ export const ImageCarousel = () => {
             <p className="text-md text-white sm:text-black font-medium p-2">
               Bringing you the best variety
             </p>
-            <div>
-              <button className="border-b text-white sm:text-black font-semibold border-black ml-2">
-                Shop Now
-              </button>
-            </div>
           </div>
         </Paper>
       ))}

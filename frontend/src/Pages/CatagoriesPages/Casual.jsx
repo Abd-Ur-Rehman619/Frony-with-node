@@ -3,6 +3,8 @@ import ShowProducts from "../../Components/Layouts/ShowProducts";
 
 export default function Casual() {
   const [casualCollection, setCasualCollection] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/products/casual");
@@ -12,6 +14,7 @@ export default function Casual() {
       }
 
       const data = await response.json();
+      setisLoading(true);
       setCasualCollection(data);
     }
     fetchData();
@@ -23,6 +26,7 @@ export default function Casual() {
           titleLabel={"Casual Collection"}
           descriptionLabel={"View All Casual Shoes"}
           products={casualCollection}
+          isLoading={isLoading}
         />
       )}
     </>

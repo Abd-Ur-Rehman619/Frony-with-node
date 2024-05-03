@@ -47,7 +47,11 @@ export default function Cart() {
       {cartData.length > 0 && (
         <main className={styles.main}>
           <table className={styles.table}>
-            <CartData cartData={cartData} token={token} />
+            <CartData
+              cartData={cartData}
+              token={token}
+              setCartData={setCartData}
+            />
           </table>
 
           <div className={styles.cartBtns}>

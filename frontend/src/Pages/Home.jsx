@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <div className="flex items-center flex-col gap-32 h-screens">
         <div className="w-full">
-          <div className=" flex mx-4 my-0 lg:gap-20 lg:mx-32 lg:my-0 ">
+          <div className=" flex mx-4 my-0 lg:gap-36 lg:mx-32 lg:my-0 ">
             <Catagories />
             <ImageCarousel />
           </div>

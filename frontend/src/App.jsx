@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./Pages/Home";
 import Root from "./Pages/Root";
 import PageNotFound from "./Pages/PageNotFound";
-import Contact from "./Pages/Contact";
+import Orders from "./Pages/Orders";
 import Signup from "./Pages/signup/Signup";
 import About from "./Pages/about/About.jsx";
 import Cart from "./Pages/cart/Cart.jsx";
@@ -38,8 +38,8 @@ const router = createBrowserRouter([
         element: <PageNotFound />,
       },
       {
-        path: "/contact",
-        element: <Contact />,
+        path: "/orders",
+        element: <Orders />,
       },
       {
         path: "/signup",

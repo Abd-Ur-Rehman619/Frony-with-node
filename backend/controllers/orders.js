@@ -1,6 +1,7 @@
 const Orders = require("../models/orders");
 
 exports.postOrder = (req, res, next) => {
+  const { address, town, phone } = req.body;
   req.user
     .populate("cart.items.productId")
     .then((user) => {
@@ -11,6 +12,9 @@ exports.postOrder = (req, res, next) => {
         user: {
           name: req.user.name,
           userId: req.user,
+          address: address,
+          town: town,
+          phone: phone,
         },
         products: products,
       });

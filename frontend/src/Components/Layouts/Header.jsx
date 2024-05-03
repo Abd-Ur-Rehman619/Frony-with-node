@@ -25,20 +25,22 @@ export default function Header() {
       <div className="flex justify-around items-center p-3">
         {" "}
         {Log && (
-          <Link to="/cart">
-            <IconButton>
-              <img src={Cart} alt="Custom Icon" />
-            </IconButton>
-          </Link>
+          <>
+            <Link to="/cart">
+              <IconButton>
+                <img src={Cart} alt="Custom Icon" />
+              </IconButton>
+            </Link>
+            <button onClick={logoutHandler} className={styles.mobileNav}>
+              LogOut
+            </button>
+          </>
         )}
       </div>
 
       <nav className="flex flex-col justify-center items-center mb-6">
         <NavLink to="/" className={styles.mobileNav}>
           Home
-        </NavLink>
-        <NavLink to="/contact" className={styles.mobileNav}>
-          Contact
         </NavLink>
         <NavLink to="/about" className={styles.mobileNav}>
           About
@@ -53,9 +55,9 @@ export default function Header() {
             </NavLink>
           </>
         ) : (
-          <button onClick={logoutHandler} className={styles.mobileNav}>
-            LogOut
-          </button>
+          <NavLink to="/orders" className={styles.mobileNav}>
+            Orders
+          </NavLink>
         )}
       </nav>
     </div>
@@ -78,14 +80,7 @@ export default function Header() {
             >
               Home
             </NavLink>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                isActive ? styles.activeLink : styles.navLinks
-              }
-            >
-              Contact
-            </NavLink>
+
             <NavLink
               to="/about"
               className={({ isActive }) =>
@@ -114,9 +109,14 @@ export default function Header() {
                 </NavLink>
               </>
             ) : (
-              <button onClick={logoutHandler} className={styles.navLinks}>
-                LogOut
-              </button>
+              <NavLink
+                to="/orders"
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : styles.navLinks
+                }
+              >
+                Orders
+              </NavLink>
             )}
           </nav>
 
@@ -139,11 +139,16 @@ export default function Header() {
 
             <div className="hidden lg:items-center lg:flex ">
               {Log && (
-                <Link to="/cart" className={styles.cartWishLinks}>
-                  <IconButton>
-                    <img src={Cart} alt="Custom Icon" />
-                  </IconButton>
-                </Link>
+                <>
+                  <Link to="/cart" className={styles.cartWishLinks}>
+                    <IconButton>
+                      <img src={Cart} alt="Custom Icon" />
+                    </IconButton>
+                  </Link>
+                  <button onClick={logoutHandler} className={styles.navLinks}>
+                    LogOut
+                  </button>
+                </>
               )}
             </div>
           </div>

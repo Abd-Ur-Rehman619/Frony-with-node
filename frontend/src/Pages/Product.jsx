@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductDetails from "../Components/Layouts/ProductDetails";
 import RelatedItems from "../Components/Layouts/RelatedItems";
-import productsData from "../json/AllShoes.json";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Product() {
   const { productSlug } = useParams();

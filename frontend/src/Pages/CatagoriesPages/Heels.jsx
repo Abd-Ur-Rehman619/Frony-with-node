@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 export default function Heels() {
   const [heelsCollection, setHeelsCollection] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/products/heels");
@@ -12,6 +14,7 @@ export default function Heels() {
       }
 
       const data = await response.json();
+      setisLoading(true);
       setHeelsCollection(data);
     }
     fetchData();
@@ -23,6 +26,7 @@ export default function Heels() {
           titleLabel={"Heels Collection"}
           descriptionLabel={"View All Heels Shoes"}
           products={heelsCollection}
+          isLoading={isLoading}
         />
       )}
     </>

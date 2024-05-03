@@ -17,9 +17,11 @@ const logSlice = createSlice({
   initialState: false,
   reducers: {
     updateLog: (state) => {
+      localStorage.setItem("isLoggedIn", "true");
       return true;
     },
     changeLog: (state) => {
+      localStorage.setItem("isLoggedIn", "false");
       return false;
     },
   },
