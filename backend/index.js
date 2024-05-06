@@ -32,7 +32,7 @@ app.use(isAuth, isUser, ordersRouter);
 
 mongoose
   .connect(
-    "mongodb+srv://germany61907:FiCsVuXOF2keh1PJ@forny.oz78vsv.mongodb.net/Forny"
+    `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASSWORD}@forny.oz78vsv.mongodb.net/Forny`
   )
   .then(() => {
     console.log("Success");
@@ -42,4 +42,4 @@ mongoose
     console.log("Connection Problem");
   });
 
-app.listen("3000");
+app.listen(process.env.USER_PORT || "3000");
