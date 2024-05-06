@@ -11,7 +11,7 @@ export default function Cart() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/cart", {
+      const response = await fetch("https://frony-with-node.vercel.app/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

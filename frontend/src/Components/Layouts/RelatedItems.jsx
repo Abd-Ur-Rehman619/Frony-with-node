@@ -11,7 +11,6 @@ export default function RelatedItems({ productsData, product }) {
     );
     setRelateditems(prouducts);
   }, [product]);
-  console.log(relatedItems);
 
   return (
     <>
@@ -23,7 +22,7 @@ export default function RelatedItems({ productsData, product }) {
           {relatedItems &&
             relatedItems.map((items) => (
               <div
-                key={items.id}
+                key={items._id}
                 className="flex flex-col  md:w-[270px] md:mx-0  relative mx-4 h-full"
               >
                 <ProductCard

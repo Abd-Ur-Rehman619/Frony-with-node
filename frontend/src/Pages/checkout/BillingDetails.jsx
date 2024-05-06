@@ -10,7 +10,7 @@ export default function BillingDetails({ detail }) {
   const token = localStorage.getItem("token");
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/cart", {
+      const response = await fetch("https://frony-with-node.vercel.app/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,18 +25,21 @@ export default function BillingDetails({ detail }) {
   }, [token]);
   async function handleOrder() {
     if (!detail.address == "" && !detail.town == "" && !detail.phone == "") {
-      const response = await fetch("http://localhost:3000/orders", {
-        method: "POST",
-        body: JSON.stringify({
-          address: detail.address,
-          town: detail.town,
-          phone: detail.phone,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://frony-with-node.vercel.app/orders",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            address: detail.address,
+            town: detail.town,
+            phone: detail.phone,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (!response.ok) {
         toast.error("Can't place an order");
       } else {

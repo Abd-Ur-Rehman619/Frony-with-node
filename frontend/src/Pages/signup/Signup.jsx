@@ -36,7 +36,7 @@ export default function Signup() {
   };
 
   const handleSignup = async () => {
-    const response = await fetch("http://localhost:3000/signup", {
+    const response = await fetch("https://frony-with-node.vercel.app/signup", {
       method: "POST",
       body: JSON.stringify({
         name: name,
