@@ -24,7 +24,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/ShoesImages", express.static(path.join(__dirname, "ShoesImages")));
-
+app.use("/", (req, res, next) => {
+  res.json("nigga");
+});
 app.use(shoesRouter);
 app.use(authRouter);
 app.use(isAuth, isUser, cartRouter);
