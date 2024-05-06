@@ -7,7 +7,9 @@ export default function Heels() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/products/heels");
+      const response = await fetch(
+        "https://frony-with-node.vercel.app/products/heels"
+      );
 
       if (!response.ok) {
         throw new Error("Could not fetch cart data!");

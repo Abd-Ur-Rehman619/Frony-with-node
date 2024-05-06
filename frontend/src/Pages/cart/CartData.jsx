@@ -7,7 +7,7 @@ export default function CartData({ cartData, token, setCartData }) {
   const [updatedCartData, setUpdatedCartData] = useState([]);
 
   async function handleIncrement(id) {
-    const response = await fetch("http://localhost:3000/cart", {
+    const response = await fetch("https://frony-with-node.vercel.app/cart", {
       method: "POST",
       body: JSON.stringify({ productId: id }),
       headers: {
@@ -25,14 +25,17 @@ export default function CartData({ cartData, token, setCartData }) {
     }
   }
   async function handleDecrement(id) {
-    const response = await fetch("http://localhost:3000/cart-item-remove", {
-      method: "POST",
-      body: JSON.stringify({ productId: id }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://frony-with-node.vercel.app/cart-item-remove",
+      {
+        method: "POST",
+        body: JSON.stringify({ productId: id }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     if (response.ok) {
       const updatedProduct = cartData.find(
         (product) => product.productId._id === id
@@ -48,14 +51,17 @@ export default function CartData({ cartData, token, setCartData }) {
     }
   }
   async function handleDelete(id) {
-    const response = await fetch("http://localhost:3000/delete-cart", {
-      method: "POST",
-      body: JSON.stringify({ productId: id }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://frony-with-node.vercel.app/delete-cart",
+      {
+        method: "POST",
+        body: JSON.stringify({ productId: id }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     if (response.ok) {
       const updatedCartData = cartData.filter(
         (item) => item.productId._id !== id

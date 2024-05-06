@@ -7,7 +7,9 @@ export default function Casual() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/products/casual");
+      const response = await fetch(
+        "https://frony-with-node.vercel.app/products/casual"
+      );
 
       if (!response.ok) {
         throw new Error("Could not fetch cart data!");

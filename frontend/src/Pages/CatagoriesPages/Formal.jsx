@@ -8,7 +8,9 @@ export default function Formal() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/products/formal");
+      const response = await fetch(
+        "https://frony-with-node.vercel.app/products/formal"
+      );
 
       if (!response.ok) {
         throw new Error("Could not fetch cart data!");

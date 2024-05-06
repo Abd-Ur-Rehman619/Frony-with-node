@@ -19,7 +19,7 @@ export default function Product() {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        "http://localhost:3000/products/" + productSlug
+        "https://frony-with-node.vercel.app/products/" + productSlug
       );
 
       if (!response.ok) {

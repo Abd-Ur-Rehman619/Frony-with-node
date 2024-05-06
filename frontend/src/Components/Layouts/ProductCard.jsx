@@ -21,7 +21,7 @@ export default function ProductCard({
   const discountPrice = price + 20;
 
   async function handleAddToCart() {
-    const response = await fetch("http://localhost:3000/cart", {
+    const response = await fetch("https://frony-with-node.vercel.app/cart", {
       method: "POST",
       body: JSON.stringify({ productId: slug }),
       headers: {

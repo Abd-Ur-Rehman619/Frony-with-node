@@ -6,7 +6,9 @@ export default function MenCollection() {
   const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:3000/products/men");
+      const response = await fetch(
+        "https://frony-with-node.vercel.app/products/men"
+      );
 
       if (!response.ok) {
         throw new Error("Could not fetch cart data!");

@@ -12,7 +12,7 @@ export default function ProductDetails({ product }) {
   const token = localStorage.getItem("token");
   const addToCartHandler = async (id) => {
     if (token) {
-      const response = await fetch("http://localhost:3000/cart", {
+      const response = await fetch("https://frony-with-node.vercel.app/cart", {
         method: "POST",
         body: JSON.stringify({ productId: id }),
         headers: {
