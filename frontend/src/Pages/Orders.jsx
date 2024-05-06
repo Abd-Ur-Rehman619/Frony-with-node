@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import OrdersCard from "../Components/OrdersCard";
+import { useNavigate } from "react-router-dom";
 
 export default function Orders() {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const token = localStorage.getItem("token");
   useEffect(() => {
@@ -13,14 +15,16 @@ export default function Orders() {
           },
         });
         const data = await response.json();
+        if (data === "Unauthorized!") {
+          navigate("/");
+        }
         setOrders(data);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
     }
     fetchData();
-  }, []);
-  console.log(orders);
+  }, [token]);
 
   return (
     <>

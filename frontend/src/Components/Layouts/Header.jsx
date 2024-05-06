@@ -1,7 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import Icon from "../../assets/icon.png";
 import Cart from "../../assets/Cart.png";
 
 import styles from "../StylingFiles/header.module.css";
@@ -121,22 +119,6 @@ export default function Header() {
           </nav>
 
           <div className={styles.textFieldDiv}>
-            <div>
-              <TextField
-                hiddenLabel
-                size={"small"}
-                className="bg-[#F5F5F5]"
-                placeholder="What are you looking for?"
-                InputProps={{
-                  endAdornment: (
-                    <IconButton>
-                      <img src={Icon} alt="Custom Icon" />
-                    </IconButton>
-                  ),
-                }}
-              />
-            </div>
-
             <div className="hidden lg:items-center lg:flex ">
               {Log && (
                 <>
@@ -153,7 +135,6 @@ export default function Header() {
             </div>
           </div>
 
-          {/* <div className="block md:hidden">{isMenuOpen && content}</div> */}
           {isMenuOpen && content}
 
           <div className={styles.menu}>

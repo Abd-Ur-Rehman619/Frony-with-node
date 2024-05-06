@@ -2,18 +2,25 @@ import styles from "./signup.module.css";
 import signupImg from "../../assets/authPic.png";
 import { Button, IconButton, Input, InputAdornment } from "@mui/material";
 import googleIcon from "../../assets/Icon-Google.png";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -27,6 +34,7 @@ export default function Signup() {
     setPassword(e.target.value);
     setPasswordError("");
   };
+
   const handleSignup = async () => {
     const response = await fetch("http://localhost:3000/signup", {
       method: "POST",
@@ -44,10 +52,10 @@ export default function Signup() {
     if (data.errors) {
       toast.error(`${data.errors}`);
     } else if (data.message) {
-      toast.success(`${data.message}`);
       setName("");
       setEmail("");
       setPassword("");
+      navigate("/login");
     }
   };
 

@@ -6,7 +6,7 @@ import ProductDesigner from "../assets/ProductDesigner.png";
 
 export default function PersonsInfo() {
   return (
-    <div className="grid grid-cols-3 justify-between gap-32">
+    <div className="grid sm:grid-cols-3 justify-between gap-32">
       <PersonsInfoLayout
         img={Founder}
         title={"William Jonas"}

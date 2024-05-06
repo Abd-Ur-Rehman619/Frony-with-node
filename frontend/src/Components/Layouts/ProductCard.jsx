@@ -1,7 +1,5 @@
 import { useState } from "react";
-import heart from "../../assets/heart.png";
 import view from "../../assets/view.png";
-import yellow from "../../assets/heart - Copy.png";
 import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -16,16 +14,12 @@ export default function ProductCard({
   gender,
   image,
 }) {
-  const [isLiked, setLiked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const Log = useSelector((state) => state.log);
   const token = localStorage.getItem("token");
 
   const discountPrice = price + 20;
 
-  const handleLikeClick = () => {
-    setLiked(!isLiked);
-  };
   async function handleAddToCart() {
     const response = await fetch("http://localhost:3000/cart", {
       method: "POST",
@@ -35,6 +29,11 @@ export default function ProductCard({
         Authorization: `Bearer ${token}`,
       },
     });
+    // if (!response.ok) {
+    //   toast.error("Item not added to the cart");
+    // } else {
+    //   toast.success("Items added to the cart");
+    // }
   }
 
   return (
@@ -73,12 +72,6 @@ export default function ProductCard({
           </div>
 
           <div className="flex flex-col absolute top-0 right-0 mt-2 mr-2">
-            <IconButton
-              onClick={handleLikeClick}
-              style={{ backgroundColor: "white" }}
-            >
-              <img src={isLiked ? yellow : heart} alt="Heart Logo" />
-            </IconButton>
             <Link to={`/Products/${slug}`}>
               <IconButton style={{ backgroundColor: "white" }}>
                 <img src={view} alt="View Logo" />

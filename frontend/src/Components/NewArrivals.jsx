@@ -35,10 +35,9 @@ export default function NewArrivals() {
               />
             </div>
 
-            <div className="flex flex-col w-full gap-8">
+            <div className="flex flex-col w-full gap-11">
               <div className="relative flex justify-end border border-black  bg-black md:h-[17rem]  h-[17.75rem]">
                 <img
-                  // className="h-[17.75rem] w-auto"
                   src="https://c4.wallpaperflare.com/wallpaper/816/770/388/jordan-fly-wade-nike-wallpaper-preview.jpg"
                   alt="womensCollection"
                   style={{ height: "100%" }}

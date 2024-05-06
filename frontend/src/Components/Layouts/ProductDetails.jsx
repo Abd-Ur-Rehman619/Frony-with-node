@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 
 export default function ProductDetails({ product }) {
   const [favorite, setFavorite] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
 
   // setTimeout(() => setShowMessage(false), 2000);
   const token = localStorage.getItem("token");
@@ -26,12 +25,6 @@ export default function ProductDetails({ product }) {
       toast.error("Log In to add items to the cart");
     }
   };
-
-  function buyHandler() {
-    if (!token) {
-      toast.error("Log In to add items to the cart");
-    }
-  }
 
   if (!product) {
     return <div>Loading...</div>;
@@ -61,12 +54,6 @@ export default function ProductDetails({ product }) {
         <p className="text-sm max-lg:max-w-sm leading-5 p-5 border-b">{`Experience limitless comfort and performance with the ${product.name}, featuring signature React foam cushioning and lightweight upper for unparalleled support and breathability.`}</p>
 
         <div className="lg:flex m-5 ">
-          <button
-            onClick={buyHandler}
-            className="bg-[#EA4335] hover:bg-[#aa4137] hover:text-white text-white font-semibold py-2 px-4 border  rounded shadow m-2 w-36"
-          >
-            Buy Now
-          </button>
           <button
             onClick={() => addToCartHandler(product._id)}
             className="bg-[#fc8941] hover:bg-[#ff7520] hover:text-white text-white font-semibold py-2 px-4 border  rounded shadow m-2 w-36"

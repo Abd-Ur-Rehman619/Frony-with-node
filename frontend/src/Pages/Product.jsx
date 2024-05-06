@@ -3,11 +3,18 @@ import { useEffect, useState } from "react";
 import ProductDetails from "../Components/Layouts/ProductDetails";
 import RelatedItems from "../Components/Layouts/RelatedItems";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartData } from "../store/cart-action";
 
 export default function Product() {
   const { productSlug } = useParams();
-  const [product, setProduct] = useState(null);
   const [singleShoe, setSingleShoe] = useState([]);
+  const cartData = useSelector((state) => state.cart.cartData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   useEffect(() => {
     async function fetchData() {
@@ -32,7 +39,9 @@ export default function Product() {
           <ProductDetails product={singleShoe} />
         </div>
         <div className="container flex gap-32">
-          {product && <RelatedItems product={product} />}
+          {singleShoe && (
+            <RelatedItems productsData={cartData} product={singleShoe} />
+          )}
         </div>
       </div>
     </>

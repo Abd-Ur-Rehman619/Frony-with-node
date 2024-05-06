@@ -1,11 +1,13 @@
 import { Button, Input } from "@mui/material";
 import styles from "./Cart.module.css";
 import CartData from "./CartData";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Cart() {
+  const navigate = useNavigate();
   const [cartData, setCartData] = useState([]);
+
   const token = localStorage.getItem("token");
   useEffect(() => {
     async function fetchData() {
@@ -15,6 +17,9 @@ export default function Cart() {
         },
       });
       const data = await response.json();
+      if (data === "Unauthorized!") {
+        navigate("/");
+      }
       setCartData(data);
     }
     fetchData();

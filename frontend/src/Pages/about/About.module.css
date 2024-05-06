@@ -3,7 +3,7 @@
 }
 
 .outStory {
-  @apply flex justify-between gap-4;
+  @apply flex justify-between gap-4 max-lg:flex-col max-lg:items-center;
 }
 
 .story {
@@ -11,7 +11,7 @@
 }
 
 .storyImage {
-  @apply max-w-2xl;
+  @apply max-w-2xl pl-16;
 }
 
 .storyImage img {

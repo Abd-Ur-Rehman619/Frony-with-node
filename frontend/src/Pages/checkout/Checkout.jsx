@@ -1,6 +1,7 @@
 import styles from "./Checkout.module.css";
 import BillingDetails from "./BillingDetails";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Checkout() {
   const [address, setAddress] = useState("");

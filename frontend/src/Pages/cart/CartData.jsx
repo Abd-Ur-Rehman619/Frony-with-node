@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./CartData.module.css";
 
 import { Delete } from "@mui/icons-material";
-import { setCartData } from "../../store/cartSlice";
 
 export default function CartData({ cartData, token, setCartData }) {
   const [updatedCartData, setUpdatedCartData] = useState([]);
-  // const [cartItems, setCartItems] = useState(cartData);
 
   async function handleIncrement(id) {
     const response = await fetch("http://localhost:3000/cart", {

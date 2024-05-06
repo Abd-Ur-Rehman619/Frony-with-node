@@ -1,7 +1,7 @@
 import styles from "./login.module.css";
 import signupImg from "../../assets/authPic.png";
 import { Button, IconButton, Input, InputAdornment } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,6 +17,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const token = localStorage.getItem("token");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -31,6 +32,11 @@ export default function Login() {
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   const handleLogin = async () => {
     const response = await fetch("http://localhost:3000/login", {
@@ -43,13 +49,17 @@ export default function Login() {
         "Content-Type": "application/json",
       },
     });
-
+    if (!response.ok) {
+      throw new Error("Failed to fetch");
+    }
     const data = await response.json();
+
     if (data.userId) {
       localStorage.setItem("token", data.token);
       dispatch(updateLog());
       navigate("/");
     } else {
+      console.log("er");
       toast.error(`${data}`);
     }
   };

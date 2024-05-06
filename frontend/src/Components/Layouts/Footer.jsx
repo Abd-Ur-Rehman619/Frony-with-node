@@ -1,6 +1,4 @@
-import { TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import Send from "../../assets/send.png";
 import appStore from "../../assets/appstore.png";
 import googlePlay from "../../assets/googlePlay.png";
 import facebook from "../../assets/iconFacebook.png";
@@ -20,35 +18,15 @@ export default function Footer() {
             <p className={styles.forny}>Exclusive</p>
             <p className={styles.detailHeader}>Subscribe</p>
             <p className={styles.detailPoints}>Get 10% off your first order</p>
-
-            <TextField
-              hiddenLabel
-              size={"small"}
-              sx={{
-                border: "1px solid white",
-                borderRadius: "6px",
-                outlineColor: "white",
-                placeholder: "white",
-              }}
-              className={styles.textfield}
-              placeholder="Enter you Email"
-              InputProps={{
-                endAdornment: (
-                  <IconButton>
-                    <img src={Send} alt="Custom Icon" />
-                  </IconButton>
-                ),
-              }}
-            />
           </div>
 
           <div className="w-full">
             <p className={styles.detailHeader}>Support</p>
             <p className="hidden md:block md:font-sans md:mb-1 md:mt-5">
-              111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.
+              F8, Islamabed, Pakistan.
             </p>
-            <p className="hidden md:block">exclusive@gmail.com</p>
-            <p className={styles.detailPoints}>+88015-88888-9999</p>
+            <p className="hidden md:block">forny@gmail.com</p>
+            <p className={styles.detailPoints}>+920101010101</p>
           </div>
 
           <div className="w-full">

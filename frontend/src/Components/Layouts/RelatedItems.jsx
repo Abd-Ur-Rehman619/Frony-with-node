@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import TitleLabel from "./TitleLabel";
-import productsData from "../../json/AllShoes.json";
 import ProductCard from "./ProductCard";
 
-export default function RelatedItems({ product }) {
+export default function RelatedItems({ productsData, product }) {
   const [relatedItems, setRelateditems] = useState(null);
 
   useEffect(() => {
@@ -11,7 +10,7 @@ export default function RelatedItems({ product }) {
       (myProduct) => myProduct.brand === product.brand
     );
     setRelateditems(prouducts);
-  }, []);
+  }, [product]);
   console.log(relatedItems);
 
   return (
@@ -20,10 +19,13 @@ export default function RelatedItems({ product }) {
         <div>
           <TitleLabel>Related Item's</TitleLabel>
         </div>
-        <div className="grid grid-cols-5 gap-10">
+        <div className="grid gap-8 justify-center items-center grid-cols-2 sm:justify-center max-md:gap-0.5 max-lg:gap-3 sm:items-center  sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {relatedItems &&
             relatedItems.map((items) => (
-              <div key={items.id}>
+              <div
+                key={items.id}
+                className="flex flex-col  md:w-[270px] md:mx-0  relative mx-4 h-full"
+              >
                 <ProductCard
                   slug={items.slug}
                   name={items.name}
@@ -31,7 +33,7 @@ export default function RelatedItems({ product }) {
                   brand={items.brand}
                   discount={items.discount}
                   gender={items.gender}
-                  image={items.imageURL}
+                  image={`../${items.imageURL}`}
                 />
               </div>
             ))}
