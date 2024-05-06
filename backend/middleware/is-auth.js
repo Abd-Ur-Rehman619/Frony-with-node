@@ -8,7 +8,7 @@ exports.isAuth = (req, res, next) => {
   const token = authHeader.split(" ")[1];
   let decodeToken;
   try {
-    decodeToken = jwt.verify(token, "!fuRN0tW!thMEtheng0@w@yNoTManTt0cu");
+    decodeToken = jwt.verify(token, process.env.USER_SECREAT_KEY);
   } catch (err) {
     console.log(err);
   }
