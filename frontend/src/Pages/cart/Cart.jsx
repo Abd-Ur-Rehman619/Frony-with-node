@@ -1,27 +1,36 @@
 import { Button, Input } from "@mui/material";
 import styles from "./Cart.module.css";
 import CartData from "./CartData";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Cart() {
-  const cartItems = useSelector((state) => state.cart.items);
+  const navigate = useNavigate();
+  const [cartData, setCartData] = useState([]);
 
-  const calculateProductSubtotal = (product) => {
-    return product.price * product.quantity;
-  };
-
-  const calculateTotalSubtotal = () => {
-    let totalSubtotal = 0;
-    cartItems.forEach((product) => {
-      totalSubtotal += calculateProductSubtotal(product);
-    });
-    return totalSubtotal;
-  };
-
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/cart", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (data === "Unauthorized!") {
+        navigate("/");
+      }
+      setCartData(data);
+    }
+    fetchData();
+  }, [token]);
+  const total = cartData.reduce(
+    (accumulator, item) => accumulator + item.quantity * item.productId.price,
+    0
+  );
   return (
     <>
-      {cartItems.length === 0 && (
+      {cartData.length === 0 && (
         <div className="flex flex-col items-center justify-center h-screen gap-20 ">
           <p className="text-6xl font-bold">No Product item in your Cart.</p>
 
@@ -40,17 +49,20 @@ export default function Cart() {
         </div>
       )}
 
-      {cartItems.length > 0 && (
+      {cartData.length > 0 && (
         <main className={styles.main}>
           <table className={styles.table}>
-            <CartData />
+            <CartData
+              cartData={cartData}
+              token={token}
+              setCartData={setCartData}
+            />
           </table>
 
           <div className={styles.cartBtns}>
             <Link to="/">
               <Button>Return to Shop</Button>
             </Link>
-            <Button>Update Cart</Button>
           </div>
 
           <div className={styles.cartFooter}>
@@ -62,14 +74,17 @@ export default function Cart() {
             <div className={styles.cartTotal}>
               <h2>Cart Total</h2>
 
-              <p>
-                Subtotal:<span>${calculateTotalSubtotal()}</span>
-              </p>
+              {cartData.map((items) => (
+                <p key={items.productId._id}>
+                  <span>{items.productId.name}</span>
+                  <span>${items.quantity * items.productId.price}</span>
+                </p>
+              ))}
               <p>
                 Shipping:<span>Free</span>
               </p>
               <p className="border-none">
-                Total:<span>${calculateTotalSubtotal()}</span>
+                Total:<span>${total}</span>
               </p>
 
               <div className={styles.checkoutBtn}>

@@ -4,11 +4,10 @@ import "./App.css";
 import Home from "./Pages/Home";
 import Root from "./Pages/Root";
 import PageNotFound from "./Pages/PageNotFound";
-import Contact from "./Pages/Contact";
+import Orders from "./Pages/Orders";
 import Signup from "./Pages/signup/Signup";
 import About from "./Pages/about/About.jsx";
 import Cart from "./Pages/cart/Cart.jsx";
-import Wishlist from "./Pages/Wishlist";
 import Login from "./Pages/login/Login.jsx";
 
 import Products from "./Pages/Products";
@@ -25,111 +24,108 @@ import Running from "./Pages/CatagoriesPages/Running";
 import Checkout from "./Pages/checkout/Checkout.jsx";
 import Product from "./Pages/Product.jsx";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/*",
-        element: <PageNotFound />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/cart",
-
-        children: [
-          {
-            index: true,
-            element: <Cart />,
-          },
-          {
-            path: "checkout",
-            element: <Checkout />,
-          },
-        ],
-      },
-      {
-        path: "/wishlist",
-        element: <Wishlist />,
-      },
-      {
-        path: "/products",
-        children: [
-          {
-            index: true,
-            element: <Products />,
-          },
-          {
-            path: "women",
-            element: <WomenCollection />,
-          },
-          {
-            path: "men",
-            element: <MenCollection />,
-          },
-          {
-            path: "kids",
-            element: <KidsCollection />,
-          },
-          {
-            path: "heels",
-            element: <Heels />,
-          },
-          {
-            path: "loafers",
-            element: <Loafers />,
-          },
-          {
-            path: "sandals",
-            element: <Sandals />,
-          },
-          {
-            path: "casual",
-            element: <Casual />,
-          },
-          {
-            path: "football",
-            element: <Football />,
-          },
-          {
-            path: "formal",
-            element: <Formal />,
-          },
-          {
-            path: "running",
-            element: <Running />,
-          },
-          {
-            path: ":productSlug",
-            element: <Product />,
-          },
-        ],
-      },
-    ],
-  },
-]);
-
 function App() {
+  const routes = [
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/*",
+          element: <PageNotFound />,
+        },
+        {
+          path: "/orders",
+          element: <Orders />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/cart",
+
+          children: [
+            {
+              index: true,
+              element: <Cart />,
+            },
+            {
+              path: "checkout",
+              element: <Checkout />,
+            },
+          ],
+        },
+
+        {
+          path: "/products",
+          children: [
+            {
+              index: true,
+              element: <Products />,
+            },
+            {
+              path: "women",
+              element: <WomenCollection />,
+            },
+            {
+              path: "men",
+              element: <MenCollection />,
+            },
+            {
+              path: "kids",
+              element: <KidsCollection />,
+            },
+            {
+              path: "heels",
+              element: <Heels />,
+            },
+            {
+              path: "loafers",
+              element: <Loafers />,
+            },
+            {
+              path: "sandals",
+              element: <Sandals />,
+            },
+            {
+              path: "casual",
+              element: <Casual />,
+            },
+            {
+              path: "football",
+              element: <Football />,
+            },
+            {
+              path: "formal",
+              element: <Formal />,
+            },
+            {
+              path: "running",
+              element: <Running />,
+            },
+            {
+              path: ":productSlug",
+              element: <Product />,
+            },
+          ],
+        },
+      ],
+    },
+  ];
+  const router = createBrowserRouter(routes);
   return <RouterProvider router={router} />;
 }
 

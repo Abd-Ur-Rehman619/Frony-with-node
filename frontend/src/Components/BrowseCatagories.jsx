@@ -1,15 +1,16 @@
 import TitleLabel from "./Layouts/TitleLabel";
 import BrowseCatagory from "./Layouts/BrowseCatagory";
 import DescriptionLabel from "./Layouts/DescriptionLabel";
+
 export default function BrowseCatagories() {
   return (
     <>
-      <main className="flex flex-col gap-10">
+      <main className="flex flex-col gap-10 mx-8">
         <TitleLabel>{["Catagories"]}</TitleLabel>
         <div>
           <DescriptionLabel>Catagories</DescriptionLabel>
         </div>
-        <div className="grid grid-cols-6 gap-8">
+        <div className="grid justify-center items-center grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 ">
           <BrowseCatagory
             catagoryImg={
               "https://static1.squarespace.com/static/527679aee4b06f1a7db2bffd/5276a43ee4b02ee843116503/594f6fcfbf629a4fd2196496/1697039488820/public_uploads_destaqueshome_resized_IMG_4844-1100x1100.jpg?format=1500w"
@@ -55,6 +56,7 @@ export default function BrowseCatagories() {
               "https://i.pinimg.com/736x/1b/bd/ef/1bbdefc389d5179a92b31bec800ec8b8.jpg"
             }
             link={"/products/formal"}
+            className="grid grid-cols-subgrid gap-4 col-span-3"
           >
             Formal Collection
           </BrowseCatagory>

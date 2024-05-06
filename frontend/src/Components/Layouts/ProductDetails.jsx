@@ -1,39 +1,30 @@
-import SizeButton from "./sizeButton";
 import heart from "../../assets/heart.png";
 import yellow from "../../assets/heart - Copy.png";
 import delivery from "../../assets/icon-delivery.png";
 import returnIcon from "../../assets/icon-return.png";
-import { useEffect, useState } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../../store/cartSlice";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ProductDetails({ product }) {
-  const log = useSelector((state) => state.log);
-  const [count, setCount] = useState(1);
   const [favorite, setFavorite] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-
-  const dispatch = useDispatch();
 
   // setTimeout(() => setShowMessage(false), 2000);
-  const addToCartHandler = () => {
-    if (log == true) {
-      dispatch(addItem({ ...product, quantity: count }));
-      setShowMessage(true);
-      setTimeout(() => setShowMessage(false), 3000);
+  const token = localStorage.getItem("token");
+  const addToCartHandler = async (id) => {
+    if (token) {
+      const response = await fetch("http://localhost:3000/cart", {
+        method: "POST",
+        body: JSON.stringify({ productId: id }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Your item has been added to the cart.");
     } else {
-      setTimeout(() => setShowMessage(true), 0);
+      toast.error("Log In to add items to the cart");
     }
   };
-
-  function buyHandler() {
-    if (log == true) {
-      alert("You have bought the item");
-    } else {
-      alert("Log In to buy items");
-    }
-  }
 
   if (!product) {
     return <div>Loading...</div>;
@@ -41,21 +32,17 @@ export default function ProductDetails({ product }) {
 
   return (
     <>
-      {showMessage && (
-        <div className="absolute top-0 left-0 right-0 bg-gray-800 text-white text-center py-2">
-          {log == true ? (
-            <p>Your item has been added to the cart.</p>
-          ) : (
-            <p>Log In to add items to the cart</p>
-          )}
-        </div>
-      )}
+      <ToastContainer position="top-center" autoClose={3000} />
+      <img
+        src={`../${product.imageURL}`}
+        alt="productImage"
+        className="border rounded sm:w-[31.25rem] sm:h-[33.2rem] lg:w-[31.25rem] lg:h-[33.2rem] max-lg-w-[20rem] max-lg-h-[21rem]"
+      />
 
-      <div className="flex items-center w-[31.25rem] h-[37.5rem] border rounded">
-        <img src={product.imageURL} alt="productImage" />
-      </div>
       <div>
-        <h1 className="text-2xl font-semibold leading-6 m-5">{product.name}</h1>
+        <h1 className="text-2xl font-semibold leading-6 m-5 max-2xl:max-w-md">
+          {product.name}
+        </h1>
         <p
           className={
             product.is_in_inventory ? "text-green-400 m-5" : "text-rose-400 m-5"
@@ -64,47 +51,11 @@ export default function ProductDetails({ product }) {
           {product.is_in_inventory ? "In Stock" : "Not Available"}
         </p>
         <p className="text-2xl  leading-6 m-5">{`$${product.price}`}</p>
-        <p className="text-sm leading-5 p-5 border-b">{`Experience limitless comfort and performance with the ${product.name}, featuring signature React foam cushioning and lightweight upper for unparalleled support and breathability.`}</p>
-        <div className="m-5">
-          Size:
-          <SizeButton>XS</SizeButton>
-          <SizeButton>S</SizeButton>
-          <SizeButton>M</SizeButton>
-          <SizeButton>L</SizeButton>
-          <SizeButton>XL</SizeButton>
-        </div>
+        <p className="text-sm max-lg:max-w-sm leading-5 p-5 border-b">{`Experience limitless comfort and performance with the ${product.name}, featuring signature React foam cushioning and lightweight upper for unparalleled support and breathability.`}</p>
 
-        <div className="flex m-5">
-          <div className="flex items-center h-11 w-40 border border-grey-700 rounded m-2">
-            <button
-              className="bg-white hover:bg-[#DB4444] hover:text-white text-gray-800 font-semibold border rounded shadow h-11 w-10"
-              onClick={() => {
-                if (count > 1) {
-                  setCount(count - 1);
-                }
-              }}
-            >
-              -
-            </button>
-            <p className="text-xl font-bold border h-11 w-20  pl-3 pr-3 flex items-center justify-center">
-              {count}
-            </p>
-            <button
-              className="bg-white hover:bg-[#DB4444] hover:text-white text-gray-800 font-semibold border rounded shadow h-11 w-10"
-              onClick={() => setCount(count + 1)}
-            >
-              +
-            </button>
-          </div>
-
+        <div className="lg:flex m-5 ">
           <button
-            onClick={buyHandler}
-            className="bg-[#EA4335] hover:bg-[#aa4137] hover:text-white text-white font-semibold py-2 px-4 border  rounded shadow m-2 w-36"
-          >
-            Buy Now
-          </button>
-          <button
-            onClick={addToCartHandler}
+            onClick={() => addToCartHandler(product._id)}
             className="bg-[#fc8941] hover:bg-[#ff7520] hover:text-white text-white font-semibold py-2 px-4 border  rounded shadow m-2 w-36"
           >
             Add to Cart
@@ -117,7 +68,7 @@ export default function ProductDetails({ product }) {
           </button>
         </div>
 
-        <div className="flex flex-col  border rounded w-[30rem] m-5 ">
+        <div className="flex flex-col  border rounded lg:w-[30rem] m-5 ">
           <div className="flex border-b p-5">
             <img src={delivery} alt="delivery" />
             <div className="flex flex-col gap-1 pl-5">

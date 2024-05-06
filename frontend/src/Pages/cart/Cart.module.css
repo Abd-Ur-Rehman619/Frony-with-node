@@ -3,7 +3,7 @@
 }
 
 .table {
-  @apply w-4/5;
+  @apply sm:w-4/5;
 }
 
 .tableHeader {
@@ -23,7 +23,7 @@
 }
 
 .cartFooter {
-  @apply flex w-4/5 p-6 justify-between;
+  @apply flex  p-6 justify-between sm:w-4/5 max-sm:flex-col;
 }
 
 .coupon {

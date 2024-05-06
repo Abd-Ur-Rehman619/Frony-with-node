@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import ShowProducts from "../../Components/Layouts/ShowProducts";
-import { useProductFilterByCategory } from "../../Components/Layouts/useProductsFilterByCategory";
 
 export default function Casual() {
-  const casualCollection = useProductFilterByCategory("CASUAL");
+  const [casualCollection, setCasualCollection] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:3000/products/casual");
+
+      if (!response.ok) {
+        throw new Error("Could not fetch cart data!");
+      }
+
+      const data = await response.json();
+      setisLoading(true);
+      setCasualCollection(data);
+    }
+    fetchData();
+  }, [casualCollection]);
   return (
     <>
       {casualCollection && (
@@ -10,6 +26,7 @@ export default function Casual() {
           titleLabel={"Casual Collection"}
           descriptionLabel={"View All Casual Shoes"}
           products={casualCollection}
+          isLoading={isLoading}
         />
       )}
     </>

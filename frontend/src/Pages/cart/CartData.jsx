@@ -1,55 +1,91 @@
+import { useState } from "react";
 import styles from "./CartData.module.css";
 
-import { useDispatch, useSelector } from "react-redux";
-import { updateQuantity } from "../../store/cartSlice";
-import { removeItem } from "../../store/cartSlice";
 import { Delete } from "@mui/icons-material";
 
-export default function CartData() {
-  const cartItems = useSelector((state) => state.cart.items);
-  const dispatch = useDispatch();
+export default function CartData({ cartData, token, setCartData }) {
+  const [updatedCartData, setUpdatedCartData] = useState([]);
 
-  const calculateSubtotal = (product) => {
-    return product.price * product.quantity;
-  };
-
-  const handleIncrement = (product) => {
-    const newQuantity = product.quantity + 1;
-    dispatch(updateQuantity({ ...product, quantity: newQuantity }));
-  };
-
-  const handleDecrement = (product) => {
-    if (product.quantity > 1) {
-      const newQuantity = product.quantity - 1;
-      dispatch(updateQuantity({ ...product, quantity: newQuantity }));
+  async function handleIncrement(id) {
+    const response = await fetch("http://localhost:3000/cart", {
+      method: "POST",
+      body: JSON.stringify({ productId: id }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      const updatedProduct = cartData.find(
+        (product) => product.productId._id === id
+      );
+      updatedProduct.quantity++;
+      const updatedData = [...cartData];
+      setUpdatedCartData(updatedData);
     }
-  };
+  }
+  async function handleDecrement(id) {
+    const response = await fetch("http://localhost:3000/cart-item-remove", {
+      method: "POST",
+      body: JSON.stringify({ productId: id }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      const updatedProduct = cartData.find(
+        (product) => product.productId._id === id
+      );
+      if (updatedProduct.quantity === 1) {
+        window.alert("Can't decrease quantity anymore");
+      } else {
+        updatedProduct.quantity--;
+      }
 
-  const handleDelete = (product) => {
-    dispatch(removeItem(product));
-  };
-
+      const updatedData = [...cartData];
+      setUpdatedCartData(updatedData);
+    }
+  }
+  async function handleDelete(id) {
+    const response = await fetch("http://localhost:3000/delete-cart", {
+      method: "POST",
+      body: JSON.stringify({ productId: id }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      const updatedCartData = cartData.filter(
+        (item) => item.productId._id !== id
+      );
+      setCartData(updatedCartData);
+    } else {
+      console.error("Failed to delete item from cart");
+    }
+  }
   return (
     <>
-      {cartItems.map((product) => (
-        <tr key={product.name}>
+      {cartData.map((product) => (
+        <tr key={product.productId.name}>
           <td className={styles.product}>
             <span className={styles.productImage}>
               <img
-                src={product.imageURL}
-                alt={product.name}
+                src={product.productId.imageURL}
+                alt={product.productId.name}
                 className={styles.image}
               />
-              <span className="w-[9.5rem]">{product.name}</span>
+              <span className="w-[9.5rem]">{product.productId.name}</span>
             </span>
 
-            <span>${product.price}</span>
+            <span>${product.productId.price}</span>
 
             <span className={styles.quantityInput}>
               <div className="flex items-center h-11 w-40 border border-grey-700 rounded m-2">
                 <button
                   className="bg-white hover:bg-[#DB4444] hover:text-white text-gray-800 font-semibold border rounded shadow h-11 w-10"
-                  onClick={() => handleDecrement(product)}
+                  onClick={() => handleDecrement(product.productId._id)}
                 >
                   -
                 </button>
@@ -60,7 +96,7 @@ export default function CartData() {
 
                 <button
                   className="bg-white hover:bg-[#DB4444] hover:text-white text-gray-800 font-semibold border rounded shadow h-11 w-10"
-                  onClick={() => handleIncrement(product)}
+                  onClick={() => handleIncrement(product.productId._id)}
                 >
                   +
                 </button>
@@ -68,10 +104,10 @@ export default function CartData() {
             </span>
 
             <span className="mr-5 flex items-center gap-6">
-              ${calculateSubtotal(product)}
+              ${product.productId.price * product.quantity}
               <span>
                 <Delete
-                  onClick={() => handleDelete(product)}
+                  onClick={() => handleDelete(product.productId._id)}
                   className="hover:text-red-600"
                 />
               </span>
