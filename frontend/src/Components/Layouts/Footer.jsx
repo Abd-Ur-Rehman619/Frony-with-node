@@ -2,6 +2,7 @@ import IconButton from "@mui/material/IconButton";
 import appStore from "../../assets/appstore.png";
 import googlePlay from "../../assets/googlePlay.png";
 import instagram from "../../assets/iconinstagram.png";
+import facebook from "../../assets/iconFacebook.png";
 import Linkedin from "../../assets/iconLinkedin.png";
 import twitter from "../../assets/iconTwitter.png";
 import qrcode from "../../assets/QrCode.png";
@@ -64,6 +65,9 @@ export default function Footer() {
               </div>
             </div>
             <div className={styles.socialIcons}>
+              <IconButton>
+                <img src={facebook} alt="facebook" />
+              </IconButton>
               <IconButton>
                 <img src={twitter} alt="twitter" />
               </IconButton>
