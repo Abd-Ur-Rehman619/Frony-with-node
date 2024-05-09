@@ -1,10 +1,10 @@
 import IconButton from "@mui/material/IconButton";
 import appStore from "../../assets/appstore.png";
 import googlePlay from "../../assets/googlePlay.png";
-import facebook from "../../assets/iconfacebook.png";
+import facebook from "../../assets/IconFacebook.png";
 import instagram from "../../assets/iconinstagram.png";
-import Linkedin from "../../assets/iconlinkedin.png";
-import twitter from "../../assets/icontwitter.png";
+import Linkedin from "../../assets/iconLinkedin.png";
+import twitter from "../../assets/iconTwitter.png";
 import qrcode from "../../assets/QrCode.png";
 
 import styles from "../StylingFiles/footer.module.css";
