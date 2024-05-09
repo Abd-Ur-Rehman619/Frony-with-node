@@ -1,9 +1,15 @@
-import BrowseCatagories from "../Components/BrowseCatagories";
+import React, { Suspense } from "react";
 import Catagories from "../Components/Catagories";
-import FlashSales from "../Components/FlashSales";
-import { ImageCarousel } from "../Components/ImageCarousel";
-import NewArrivals from "../Components/NewArrivals";
-import ServicesComponent from "../Components/ServicesComponent";
+const BrowseCatagories = React.lazy(() =>
+  import("../Components/BrowseCatagories")
+);
+const FlashSales = React.lazy(() => import("../Components/FlashSales"));
+import ImageCarousel from "../Components/ImageCarousel";
+const NewArrivals = React.lazy(() => import("../Components/NewArrivals"));
+const ServicesComponent = React.lazy(() =>
+  import("../Components/ServicesComponent")
+);
+import { CircularProgress } from "@mui/material";
 
 export default function Home() {
   return (
@@ -16,39 +22,51 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <FlashSales
-            titleLabel="Today's"
-            descriptionLabel="Flash Sales"
-            count={1}
-          />
+          <Suspense fallback={<CircularProgress />}>
+            <FlashSales
+              titleLabel="Today's"
+              descriptionLabel="Flash Sales"
+              count={1}
+            />
+          </Suspense>
         </div>
 
         <div>
-          <BrowseCatagories />
+          <Suspense fallback={<CircularProgress />}>
+            <BrowseCatagories />
+          </Suspense>
         </div>
 
         <div>
-          <FlashSales
-            titleLabel={"This Month"}
-            descriptionLabel={"Best Selling Products"}
-            count={2}
-          />
+          <Suspense fallback={<CircularProgress />}>
+            <FlashSales
+              titleLabel={"This Month"}
+              descriptionLabel={"Best Selling Products"}
+              count={2}
+            />
+          </Suspense>
         </div>
 
         <div>
-          <FlashSales
-            titleLabel="Our Products"
-            descriptionLabel="Explore Our Products"
-            count={3}
-          />
+          <Suspense fallback={<CircularProgress />}>
+            <FlashSales
+              titleLabel="Our Products"
+              descriptionLabel="Explore Our Products"
+              count={3}
+            />
+          </Suspense>
         </div>
 
         <div className="mx-10 w-full">
-          <NewArrivals />
+          <Suspense fallback={<CircularProgress />}>
+            <NewArrivals />
+          </Suspense>
         </div>
 
         <div className=" flex justify-center  pb-24 w-full">
-          <ServicesComponent />
+          <Suspense fallback={<CircularProgress />}>
+            <ServicesComponent />
+          </Suspense>
         </div>
       </div>
     </>

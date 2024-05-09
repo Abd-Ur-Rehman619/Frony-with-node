@@ -1,14 +1,21 @@
-import Carousel from "react-material-ui-carousel";
-import Paper from "@mui/material/Paper";
 import shoesImg from "../json/Carousel_Imgs.json";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-export const ImageCarousel = () => {
+export default function ImageCarousel() {
   return (
-    <Carousel className="w-[50rem] pt-10">
+    <Carousel
+      className="w-[50rem] pt-10 mt-5 border-2 rounded shadow-2xl"
+      showArrows={true}
+      showStatus={false}
+      showThumbs={false}
+      infiniteLoop={true}
+    >
       {shoesImg.map((item) => (
-        <Paper className="relative flex justify-end" key={item.id}>
+        <div className="relative flex justify-end " key={item.id}>
           <img
-            className=" h-[20rem]"
+            loading="lazy"
+            className=" h-[20rem] object-contain"
             src={item.imageURL}
             alt={`Slide ${item.id}`}
           />
@@ -20,8 +27,8 @@ export const ImageCarousel = () => {
               Bringing you the best variety
             </p>
           </div>
-        </Paper>
+        </div>
       ))}
     </Carousel>
   );
-};
+}

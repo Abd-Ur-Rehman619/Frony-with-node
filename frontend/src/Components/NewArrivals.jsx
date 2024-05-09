@@ -1,9 +1,5 @@
 import TitleLabel from "./Layouts/TitleLabel";
 import DescriptionLabel from "./Layouts/DescriptionLabel";
-import womensCollection from "../assets/attractive-woman-wearing-hat-posing-black-background.png";
-import playStation from "../assets/playstation.png";
-import woffers from "../assets/woffers.png";
-import Gucciperfume from "../assets/Gucciperfume.png";
 import NewArrivedDetails from "./Layouts/NewArrivedDetails";
 
 export default function NewArrivals() {
@@ -21,6 +17,7 @@ export default function NewArrivals() {
             <div className="relative flex justify-end border w-full border-black bg-black h-[17rem]  lg:h-[37.5rem] ">
               <div className="flex justify-center items-end h-full">
                 <img
+                  loading="lazy"
                   src="https://c4.wallpaperflare.com/wallpaper/816/770/388/jordan-fly-wade-nike-wallpaper-preview.jpg"
                   alt="playStation"
                   style={{ height: "100%" }}

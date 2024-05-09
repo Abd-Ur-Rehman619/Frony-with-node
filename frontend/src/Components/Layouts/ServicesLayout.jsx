@@ -3,7 +3,7 @@ export default function ServicesLayout({ img, title, description }) {
     <>
       <div className="flex flex-col items-center gap-5 ">
         <div>
-          <img src={img} alt="img" />
+          <img loading="lazy" src={img} alt="img" />
         </div>
         <div>
           <p className="text-xl font-semibold">{title}</p>

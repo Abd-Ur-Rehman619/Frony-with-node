@@ -1,28 +1,35 @@
+import React, { Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 import "./App.css";
 
-import Home from "./Pages/Home";
-import Root from "./Pages/Root";
-import PageNotFound from "./Pages/PageNotFound";
-import Orders from "./Pages/Orders";
-import Signup from "./Pages/signup/Signup";
-import About from "./Pages/about/About.jsx";
-import Cart from "./Pages/cart/Cart.jsx";
-import Login from "./Pages/login/Login.jsx";
-
-import Products from "./Pages/Products";
-import WomenCollection from "./Pages/CatagoriesPages/WomenCollection";
-import MenCollection from "./Pages/CatagoriesPages/MenCollection";
-import KidsCollection from "./Pages/CatagoriesPages/KidsCollection";
-import Heels from "./Pages/CatagoriesPages/Heels";
-import Loafers from "./Pages/CatagoriesPages/Loafers";
-import Sandals from "./Pages/CatagoriesPages/Sandals";
-import Casual from "./Pages/CatagoriesPages/Casual";
-import Football from "./Pages/CatagoriesPages/Football";
-import Formal from "./Pages/CatagoriesPages/Formal";
-import Running from "./Pages/CatagoriesPages/Running";
-import Checkout from "./Pages/checkout/Checkout.jsx";
-import Product from "./Pages/Product.jsx";
+const Home = React.lazy(() => import("./Pages/Home"));
+const Root = React.lazy(() => import("./Pages/Root"));
+const PageNotFound = React.lazy(() => import("./Pages/PageNotFound"));
+const Orders = React.lazy(() => import("./Pages/Orders"));
+const Signup = React.lazy(() => import("./Pages/signup/Signup"));
+const About = React.lazy(() => import("./Pages/about/About.jsx"));
+const Cart = React.lazy(() => import("./Pages/cart/Cart.jsx"));
+const Login = React.lazy(() => import("./Pages/login/Login.jsx"));
+const Products = React.lazy(() => import("./Pages/Products"));
+const WomenCollection = React.lazy(() =>
+  import("./Pages/CatagoriesPages/WomenCollection")
+);
+const MenCollection = React.lazy(() =>
+  import("./Pages/CatagoriesPages/MenCollection")
+);
+const KidsCollection = React.lazy(() =>
+  import("./Pages/CatagoriesPages/KidsCollection")
+);
+const Heels = React.lazy(() => import("./Pages/CatagoriesPages/Heels"));
+const Loafers = React.lazy(() => import("./Pages/CatagoriesPages/Loafers"));
+const Sandals = React.lazy(() => import("./Pages/CatagoriesPages/Sandals"));
+const Casual = React.lazy(() => import("./Pages/CatagoriesPages/Casual"));
+const Football = React.lazy(() => import("./Pages/CatagoriesPages/Football"));
+const Formal = React.lazy(() => import("./Pages/CatagoriesPages/Formal"));
+const Running = React.lazy(() => import("./Pages/CatagoriesPages/Running"));
+const Checkout = React.lazy(() => import("./Pages/checkout/Checkout.jsx"));
+const Product = React.lazy(() => import("./Pages/Product.jsx"));
 
 function App() {
   const routes = [
@@ -32,93 +39,171 @@ function App() {
       children: [
         {
           index: true,
-          element: <Home />,
+          element: (
+            <Suspense fallback={<CircularProgress />}>
+              <Home />
+            </Suspense>
+          ),
         },
         {
           path: "/*",
-          element: <PageNotFound />,
+          element: (
+            <Suspense fallback={<CircularProgress />}>
+              <PageNotFound />
+            </Suspense>
+          ),
         },
         {
           path: "/orders",
-          element: <Orders />,
+          element: (
+            <Suspense fallback={<CircularProgress />}>
+              <Orders />
+            </Suspense>
+          ),
         },
         {
           path: "/signup",
-          element: <Signup />,
+          element: (
+            <Suspense fallback={<CircularProgress />}>
+              <Signup />
+            </Suspense>
+          ),
         },
         {
           path: "/login",
-          element: <Login />,
+          element: (
+            <Suspense fallback={<CircularProgress />}>
+              <Login />
+            </Suspense>
+          ),
         },
         {
           path: "/about",
-          element: <About />,
+          element: (
+            <Suspense fallback={<CircularProgress />}>
+              <About />
+            </Suspense>
+          ),
         },
         {
           path: "/cart",
-
           children: [
             {
               index: true,
-              element: <Cart />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Cart />
+                </Suspense>
+              ),
             },
             {
               path: "checkout",
-              element: <Checkout />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Checkout />
+                </Suspense>
+              ),
             },
           ],
         },
-
         {
           path: "/products",
           children: [
             {
               index: true,
-              element: <Products />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Products />
+                </Suspense>
+              ),
             },
             {
               path: "women",
-              element: <WomenCollection />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <WomenCollection />
+                </Suspense>
+              ),
             },
             {
               path: "men",
-              element: <MenCollection />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <MenCollection />
+                </Suspense>
+              ),
             },
             {
               path: "kids",
-              element: <KidsCollection />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <KidsCollection />
+                </Suspense>
+              ),
             },
             {
               path: "heels",
-              element: <Heels />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Heels />
+                </Suspense>
+              ),
             },
             {
               path: "loafers",
-              element: <Loafers />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Loafers />
+                </Suspense>
+              ),
             },
             {
               path: "sandals",
-              element: <Sandals />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Sandals />
+                </Suspense>
+              ),
             },
             {
               path: "casual",
-              element: <Casual />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Casual />
+                </Suspense>
+              ),
             },
             {
               path: "football",
-              element: <Football />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Football />
+                </Suspense>
+              ),
             },
             {
               path: "formal",
-              element: <Formal />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Formal />
+                </Suspense>
+              ),
             },
             {
               path: "running",
-              element: <Running />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Running />
+                </Suspense>
+              ),
             },
             {
               path: ":productSlug",
-              element: <Product />,
+              element: (
+                <Suspense fallback={<CircularProgress />}>
+                  <Product />
+                </Suspense>
+              ),
             },
           ],
         },
