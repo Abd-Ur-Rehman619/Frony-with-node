@@ -10,6 +10,8 @@ export default function ImageCarousel() {
       showStatus={false}
       showThumbs={false}
       infiniteLoop={true}
+      autoPlay={true}
+      interval={2000}
     >
       {shoesImg.map((item) => (
         <div className="relative flex justify-end " key={item.id}>
