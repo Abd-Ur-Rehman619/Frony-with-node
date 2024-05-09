@@ -118,10 +118,6 @@ export default function Login() {
             <div className={styles.loginBtn}>
               <Button onClick={handleLogin}>Log in</Button>
             </div>
-
-            <div className={styles.forgetBtn}>
-              <Button>Forget Password?</Button>
-            </div>
           </div>
         </form>
       </div>
