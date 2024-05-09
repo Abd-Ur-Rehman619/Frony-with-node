@@ -1,5 +1,5 @@
 import { useState } from "react";
-import view from "../../assets/view.png";
+import view from "../../assets/View.png";
 import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
