@@ -123,13 +123,6 @@ export default function Signup() {
             <div className={styles.createBtn}>
               <Button onClick={handleSignup}>Create Account</Button>
             </div>
-
-            <div className={styles.googleBtn}>
-              <Button>
-                <img src={googleIcon} />
-                Sign Up with Google
-              </Button>
-            </div>
           </div>
 
           <div className={styles.footerBtn}>
