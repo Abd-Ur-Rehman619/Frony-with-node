@@ -1,7 +1,7 @@
 import heart from "../../assets/heart.png";
 import yellow from "../../assets/heart - Copy.png";
 import delivery from "../../assets/icon-delivery.png";
-import returnIcon from "../../assets/icon-return.png";
+import returnIcon from "../../assets/Icon-return.png";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
