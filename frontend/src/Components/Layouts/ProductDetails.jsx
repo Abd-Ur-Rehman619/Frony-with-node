@@ -70,7 +70,7 @@ export default function ProductDetails({ product }) {
 
         <div className="flex flex-col  border rounded lg:w-[30rem] m-5 ">
           <div className="flex border-b p-5">
-            <img src={delivery} alt="delivery" />
+            <img loading="lazy" src={delivery} alt="delivery" />
             <div className="flex flex-col gap-1 pl-5">
               <p className="text-medium font-semibold">Free Delivery</p>
               <p className="text-sm font-semibold">
@@ -79,7 +79,7 @@ export default function ProductDetails({ product }) {
             </div>
           </div>
           <div className="flex p-5">
-            <img src={returnIcon} alt="returnIcon" />
+            <img loading="lazy" src={returnIcon} alt="returnIcon" />
             <div className="flex flex-col gap-1 pl-5">
               <p className="text-medium font-semibold">Return Delivery</p>
               <p className="text-sm font-semibold">

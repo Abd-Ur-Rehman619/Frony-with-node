@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Components/Layouts/Header";
-import Footer from "../Components/Layouts/Footer";
+import React, { Suspense } from "react";
+
+const LazyFooter = React.lazy(() => import("../Components/Layouts/Footer"));
 
 export default function Root() {
   return (
@@ -8,7 +10,9 @@ export default function Root() {
       <main className="bg-white">
         <Header />
         <Outlet />
-        <Footer />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LazyFooter />
+        </Suspense>
       </main>
     </>
   );

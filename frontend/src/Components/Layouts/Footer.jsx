@@ -57,25 +57,25 @@ export default function Footer() {
               </IconButton>
               <div className="flex flex-col w-full">
                 <IconButton>
-                  <img src={googlePlay} alt="googlePlay" />
+                  <img loading="lazy" src={googlePlay} alt="googlePlay" />
                 </IconButton>
                 <IconButton>
-                  <img src={appStore} alt="appStore" />
+                  <img loading="lazy" src={appStore} alt="appStore" />
                 </IconButton>
               </div>
             </div>
             <div className={styles.socialIcons}>
               <IconButton>
-                <img src={facebook} alt="facebook" />
+                <img loading="lazy" src={facebook} alt="facebook" />
               </IconButton>
               <IconButton>
-                <img src={twitter} alt="twitter" />
+                <img loading="lazy" src={twitter} alt="twitter" />
               </IconButton>
               <IconButton>
-                <img src={instagram} alt="instagram" />
+                <img loading="lazy" src={instagram} alt="instagram" />
               </IconButton>
               <IconButton>
-                <img src={Linkedin} alt="Linkedin" />
+                <img loading="lazy" src={Linkedin} alt="Linkedin" />
               </IconButton>
             </div>
           </div>
